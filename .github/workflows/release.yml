@@ -1,0 +1,59 @@
+name: Build Particle Park Pro and create a draft release
+
+on:
+  create
+
+jobs:
+  jar:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 14
+      uses: actions/setup-java@v1
+      with:
+        java-version: 14
+
+    - name: Fix gradlew file permissions
+      run: chmod +x gradlew
+
+    - name: Build jar
+      run: ./gradlew core:jar
+
+    - name: Upload jar artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: particleparkpro.jar
+        path: core/build/lib/particleparkpro.jar
+
+  release:
+    permissions: write-all
+    needs: [jar]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v2
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Particle Park Pro ver. ${{ github.ref }}
+          draft: true
+          prerelease: false
+
+      - name: Upload jar release artifacts
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: particleparkpro.jar/particleparkpro.jar
+          asset_name: particleparkpro.jar
+          asset_content_type: application/x-java-archive
