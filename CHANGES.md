@@ -1,6 +1,7 @@
 # Changelog
 ### Version 0.0.5
 * Rebranded app as GDX Particle Editor
+* Fixed PPM not being applied at app start
 ### Version 0.0.4
 * Keyboard shortcuts to save, saveAs, and open have been added. Thanks, John!
 * Added option to load pre-built templates

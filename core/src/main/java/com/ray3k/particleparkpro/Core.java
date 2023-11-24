@@ -36,8 +36,11 @@ import com.ray3k.stripe.ViewportWidget;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
 import static com.ray3k.particleparkpro.PresetActions.welcomeAction;
+import static com.ray3k.particleparkpro.PreviewSettings.*;
 import static com.ray3k.particleparkpro.Settings.*;
 import static com.ray3k.particleparkpro.Utils.*;
+import static com.ray3k.particleparkpro.widgets.panels.PreviewPanel.zoomLevelIndex;
+import static com.ray3k.particleparkpro.widgets.panels.PreviewPanel.zoomLevels;
 
 /**
  * The primary ApplicationAdapter for the app. It also holds static variables for the utility objects shared by all
@@ -296,6 +299,7 @@ public class Core extends ApplicationAdapter {
         shortcutManager.setKeyMap(keyMap);
 
         updateViewportScale(valueToUIscale(preferences.getFloat(NAME_SCALE, DEFAULT_SCALE)));
+        previewViewport.setUnitsPerPixel(zoomLevels.get(zoomLevelIndex) / getPixelsPerMeter());
 
         SkinLoader.loadSkin();
         shapeDrawer = new ShapeDrawer(spriteBatch, skin.getRegion("white-pixel"));
