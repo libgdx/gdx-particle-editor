@@ -1,5 +1,5 @@
 # Changelog
-### Version 0.0.5
+### Version 1.0.0
 * Rebranded app as GDX Particle Editor
 * Fixed PPM not being applied at app start
 ### Version 0.0.4

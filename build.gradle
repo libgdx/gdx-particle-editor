@@ -35,7 +35,7 @@ task versionText {
 }
 
 subprojects {
-  version = '0.0.5'
+  version = '1.0.0'
   ext.appName = 'particleparkpro'
   repositories {
     mavenCentral()
