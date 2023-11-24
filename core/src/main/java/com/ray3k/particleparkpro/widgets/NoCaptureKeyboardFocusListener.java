@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 /**
  * A hack to signify that the widget this listener is attached to should not trigger the keyboard focus changed event
- * in Particle Park Pro.
+ * in GDX Particle Editor.
  */
 public class NoCaptureKeyboardFocusListener implements EventListener {
     @Override

@@ -47,7 +47,7 @@ import static com.ray3k.particleparkpro.widgets.panels.EffectEmittersPanel.effec
 import static com.ray3k.particleparkpro.widgets.panels.EmitterPropertiesPanel.emitterPropertiesPanel;
 
 /**
- * A convenience class with various static methods that perform various utility tasks throughout Particle Park Pro.
+ * A convenience class with various static methods that perform various utility tasks throughout GDX Particle Editor.
  */
 public class Utils {
 
@@ -85,7 +85,7 @@ public class Utils {
         Thread thread = new Thread(() -> {
             HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
             HttpRequest httpRequest = requestBuilder.newRequest().method(HttpMethods.GET)
-                .url("https://raw.githubusercontent.com/raeleus/Particle-Park-Pro/master/core/src/main/resources/version")
+                .url("https://raw.githubusercontent.com/libgdx/gdx-particle-editor/master/core/src/main/resources/version")
                 .build();
 
             Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {

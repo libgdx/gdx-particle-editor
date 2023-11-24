@@ -41,7 +41,7 @@ import static com.ray3k.particleparkpro.widgets.styles.Styles.tooltipBottomRight
 import static com.ray3k.particleparkpro.widgets.subpanels.ImagesSubPanel.imagesSubPanel;
 
 /**
- * A convenience class to organize and initialize the custom listeners for Particle Park Pro.
+ * A convenience class to organize and initialize the custom listeners for GDX Particle Editor.
  */
 public class Listeners {
     public static SystemCursorListener handListener;

@@ -38,7 +38,7 @@ public class PopError extends PopTable {
         pad(20);
         defaults().space(10);
 
-        var label = new Label("Particle Park Pro encountered an error:", skin, "bold");
+        var label = new Label("GDX Particle Editor encountered an error:", skin, "bold");
         add(label);
 
         row();

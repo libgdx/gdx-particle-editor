@@ -13,7 +13,7 @@ import static com.ray3k.particleparkpro.Core.skin;
 import static com.ray3k.particleparkpro.Listeners.*;
 
 /**
- * An introductory screen used exclusively in Wizard mode to help introduce users to Particle Park Pro.
+ * An introductory screen used exclusively in Wizard mode to help introduce users to GDX Particle Editor.
  */
 public class StartPanel extends Panel {
     private Table scrollTable;
@@ -46,7 +46,7 @@ public class StartPanel extends Panel {
         scrollTable.add(label);
 
         scrollTable.row();
-        label = new Label("Particle Park Pro allows you to create particle effects for your libGDX games.", skin);
+        label = new Label("GDX Particle Editor allows you to create particle effects for your libGDX games.", skin);
         scrollTable.add(label);
 
         scrollTable.row();
@@ -91,7 +91,7 @@ public class StartPanel extends Panel {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            Gdx.net.openURI("https://github.com/raeleus/Particle-Park-Pro");
+            Gdx.net.openURI("https://github.com/libgdx/gdx-particle-editor");
         });
 
         textButton = new TextButton("YouTube", skin);

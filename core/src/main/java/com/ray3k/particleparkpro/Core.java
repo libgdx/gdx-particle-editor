@@ -226,7 +226,7 @@ public class Core extends ApplicationAdapter {
     /**
      * The default window title that is displayed at the top of the GLFW window.
      */
-    public static final String DEFAULT_WINDOW_TITLE = "Particle Park Pro - Untitled Particle";
+    public static final String DEFAULT_WINDOW_TITLE = "GDX Particle Editor - Untitled Particle";
 
     /**
      * Indicates if changes have been made to the currently open file.
@@ -263,7 +263,7 @@ public class Core extends ApplicationAdapter {
         version = "ver " + versionRaw;
         defaultFileName = "particle.p";
 
-        preferences = Gdx.app.getPreferences("Particle Park Pro");
+        preferences = Gdx.app.getPreferences("GDX Particle Editor");
         fileHandles = new ObjectMap<>();
         sprites = new ObjectMap<>();
 
@@ -392,7 +392,7 @@ public class Core extends ApplicationAdapter {
     }
 
     public static void updateWindowTitle() {
-        var title = openFileFileHandle == null ? Core.DEFAULT_WINDOW_TITLE : "Particle Park Pro - " + openFileFileHandle.name();
+        var title = openFileFileHandle == null ? Core.DEFAULT_WINDOW_TITLE : "GDX Particle Editor - " + openFileFileHandle.name();
         if (unsavedChangesMade || openFileFileHandle == null) title += "*";
         Gdx.graphics.setTitle(title);
     }

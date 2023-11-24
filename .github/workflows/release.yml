@@ -1,4 +1,4 @@
-name: Build Particle Park Pro and create a draft release
+name: Build GDX Particle Editor and create a draft release
 
 on:
   create
@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Particle Park Pro ver. ${{ github.ref }}
+          release_name: GDX Particle Editor ver. ${{ github.ref }}
           draft: true
           prerelease: false
 

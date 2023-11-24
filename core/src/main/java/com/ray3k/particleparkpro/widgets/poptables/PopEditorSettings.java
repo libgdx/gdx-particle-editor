@@ -224,7 +224,7 @@ public class PopEditorSettings extends PopTable {
         var subButton = new TextButton("Open Preferences Directory", skin);
         buttonTable.add(subButton);
         addHandListener(subButton);
-        addTooltip(subButton, "Open the preferences directory where Particle Park Pro saves its settings", Align.top, Align.top,
+        addTooltip(subButton, "Open the preferences directory where GDX Particle Editor saves its settings", Align.top, Align.top,
             tooltipBottomArrowStyle);
         onChange(subButton, () -> {
             try {
@@ -242,7 +242,7 @@ public class PopEditorSettings extends PopTable {
         subButton = new TextButton("Open Log Directory", skin);
         buttonTable.add(subButton);
         addHandListener(subButton);
-        addTooltip(subButton, "Open the log directory where Particle Park Pro saves errors", Align.top, Align.top,
+        addTooltip(subButton, "Open the log directory where GDX Particle Editor saves errors", Align.top, Align.top,
             tooltipBottomArrowStyle);
         onChange(subButton, () -> {
             try {
@@ -267,9 +267,9 @@ public class PopEditorSettings extends PopTable {
         subButton = new TextButton("Open GitHub Page", skin);
         buttonTable.add(subButton);
         addHandListener(subButton);
-        addTooltip(subButton, "Open the GitHub page for Particle Park Pro", Align.top, Align.top, tooltipBottomArrowStyle);
+        addTooltip(subButton, "Open the GitHub page for GDX Particle Editor", Align.top, Align.top, tooltipBottomArrowStyle);
         onChange(subButton, () -> {
-            Gdx.net.openURI("https://github.com/raeleus/Particle-Park-Pro");
+            Gdx.net.openURI("https://github.com/libgdx/gdx-particle-editor");
         });
 
         buttonTable.row();
