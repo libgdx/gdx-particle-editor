@@ -5,10 +5,8 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -323,25 +321,21 @@ public class PopEditorSettings extends PopTable {
 
         var primaryTextField = new TextField("", skin);
         primaryTextField.setText(constructShortcutText(shortcut.getPrimaryKeybind()));
+        primaryTextField.setDisabled(true);
         shortcutTable.add(primaryTextField);
         textFields.add(primaryTextField);
         addHandListener(primaryTextField);
         addTooltip(primaryTextField, shortcut.getDescription(), Align.top, Align.top, tooltipBottomArrowStyle);
-        onTouchDown(primaryTextField, () -> {
-            getStage().setKeyboardFocus(null);
-            showKeyBindPop(primaryTextField, shortcut, getStage(), true);
-        });
+        onClick(primaryTextField, () -> showKeyBindPop(primaryTextField, shortcut, foregroundStage, true));
 
         var secondaryTextField = new TextField("", skin);
         secondaryTextField.setText(constructShortcutText(shortcut.getSecondaryKeybind()));
+        secondaryTextField.setDisabled(true);
         shortcutTable.add(secondaryTextField);
         textFields.add(secondaryTextField);
         addHandListener(secondaryTextField);
         addTooltip(secondaryTextField, shortcut.getDescription(), Align.top, Align.top, tooltipBottomArrowStyle);
-        onTouchDown(secondaryTextField, () -> {
-            getStage().setKeyboardFocus(null);
-            showKeyBindPop(secondaryTextField, shortcut, getStage(), false);
-        });
+        onClick(secondaryTextField, () -> showKeyBindPop(secondaryTextField, shortcut, foregroundStage, false));
     }
 
     public static void openFileExplorer (FileHandle startDirectory) throws IOException {
@@ -496,6 +490,18 @@ public class PopEditorSettings extends PopTable {
                 pop.hide();
                 updateDuplicateKeybindUI();
                 return false;
+            }
+        });
+
+        pop.addListener(new TableShowHideListener() {
+            @Override
+            public void tableShown(Event event) {
+                suppressKeyInputListeners(true);
+            }
+
+            @Override
+            public void tableHidden(Event event) {
+                Gdx.app.postRunnable(() -> suppressKeyInputListeners(false));
             }
         });
 
