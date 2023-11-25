@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.2
+* 
 ### Version 1.0.1
 * Removed all references to Particle Park Pro
 * Escape hides relevant dialogs
