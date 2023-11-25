@@ -22,7 +22,7 @@ else {
 }
 
 sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
-mainClassName = 'com.ray3k.particleparkpro.lwjgl3.Lwjgl3Launcher'
+mainClassName = 'com.ray3k.gdxparticleeditor.lwjgl3.Lwjgl3Launcher'
 sourceCompatibility = 11
 
 dependencies {

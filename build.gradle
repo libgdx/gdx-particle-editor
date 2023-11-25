@@ -36,7 +36,7 @@ task versionText {
 
 subprojects {
   version = '1.0.1'
-  ext.appName = 'particleparkpro'
+  ext.appName = 'gdx-particle-editor'
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
@@ -49,4 +49,4 @@ subprojects {
   }
 }
 
-eclipse.project.name = 'particleparkpro' + '-parent'
+eclipse.project.name = 'gdx-particle-editor' + '-parent'
