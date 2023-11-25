@@ -16,7 +16,8 @@ import com.ray3k.stripe.PopTable;
 
 import java.io.IOException;
 
-import static com.ray3k.gdxparticleeditor.Core.*;
+import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
+import static com.ray3k.gdxparticleeditor.Core.skin;
 import static com.ray3k.gdxparticleeditor.Settings.logFile;
 
 /**

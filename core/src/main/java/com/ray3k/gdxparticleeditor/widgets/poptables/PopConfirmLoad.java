@@ -11,7 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Align;
 import com.ray3k.stripe.PopTable;
 
-import static com.ray3k.gdxparticleeditor.Core.*;
+import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
+import static com.ray3k.gdxparticleeditor.Core.skin;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
 
