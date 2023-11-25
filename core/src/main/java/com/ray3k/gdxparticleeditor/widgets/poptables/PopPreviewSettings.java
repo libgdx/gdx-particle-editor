@@ -1,6 +1,7 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -36,6 +37,7 @@ public class PopPreviewSettings extends PopTable {
 
         setDraggable(false);
         setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
         setKeepSizedWithinStage(true);
         addListener(new TableShowHideListener() {
             @Override

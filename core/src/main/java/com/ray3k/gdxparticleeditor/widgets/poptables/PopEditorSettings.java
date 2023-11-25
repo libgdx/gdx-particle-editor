@@ -2,6 +2,7 @@ package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -60,6 +61,7 @@ public class PopEditorSettings extends PopTable {
 
         pad(20).padTop(10);
         setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
         setKeepCenteredInWindow(true);
         addListener(new TableShowHideListener() {
             @Override
@@ -231,7 +233,18 @@ public class PopEditorSettings extends PopTable {
             } catch (IOException e) {
                 var error = "Error opening preferences directory.";
                 var pop = new PopError(error, e.getMessage());
-                pop.show(stage);
+                pop.addListener(new TableShowHideListener() {
+                    @Override
+                    public void tableShown(Event event) {
+                        Gdx.input.setInputProcessor(foregroundStage);
+                    }
+
+                    @Override
+                    public void tableHidden(Event event) {
+                        Gdx.input.setInputProcessor(stage);
+                    }
+                });
+                pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
             }
@@ -249,7 +262,18 @@ public class PopEditorSettings extends PopTable {
             } catch (IOException e) {
                 var error = "Error opening log directory.";
                 var pop = new PopError(error, e.getMessage());
-                pop.show(stage);
+                pop.addListener(new TableShowHideListener() {
+                    @Override
+                    public void tableShown(Event event) {
+                        Gdx.input.setInputProcessor(foregroundStage);
+                    }
+
+                    @Override
+                    public void tableHidden(Event event) {
+                        Gdx.input.setInputProcessor(stage);
+                    }
+                });
+                pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
             }

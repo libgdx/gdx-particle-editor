@@ -1,6 +1,7 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cursor.SystemCursor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -32,6 +33,9 @@ public class PopLocateImages extends PopTable {
 
     public PopLocateImages(FileHandle particleFileHandle, boolean merge) {
         super(skin.get(WindowStyle.class));
+
+        setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
 
         this.particleFileHandle = particleFileHandle;
         this.merge = merge;

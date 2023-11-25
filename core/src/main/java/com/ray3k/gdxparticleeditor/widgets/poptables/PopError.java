@@ -1,5 +1,6 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -26,6 +27,9 @@ public class PopError extends PopTable {
 
     public PopError(String message, String error) {
         super(skin.get(WindowStyle.class));
+
+        setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
 
         this.message = message;
         this.error = error;

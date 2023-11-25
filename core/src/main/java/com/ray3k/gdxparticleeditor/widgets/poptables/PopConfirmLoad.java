@@ -1,7 +1,9 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -26,8 +28,23 @@ public class PopConfirmLoad extends PopTable {
     public PopConfirmLoad(Runnable runnableSave, Runnable runnableDiscard) {
         super(skin.get(WindowStyle.class));
 
+        setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
+
         this.runnableSave = runnableSave;
         this.runnableDiscard = runnableDiscard;
+
+        addListener(new TableShowHideListener() {
+            @Override
+            public void tableShown(Event event) {
+
+            }
+
+            @Override
+            public void tableHidden(Event event) {
+                if (Gdx.input.getInputProcessor() == foregroundStage) Gdx.input.setInputProcessor(previousInputProcessor);
+            }
+        });
 
         previousInputProcessor = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(foregroundStage);

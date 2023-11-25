@@ -148,9 +148,11 @@ public class EffectEmittersPanel extends Panel {
     }
 
     private void showPopEmitterControls(Actor attachToActor) {
+        hidePopEmitterControls();
         popEmitterControls = new PopTable(skin.get("side-pop", WindowStyle.class));
         popEmitterControls.attachToActor(attachToActor, Align.topRight, Align.bottomRight);
         popEmitterControls.setHideOnUnfocus(true);
+        popEmitterControls.key(Keys.ESCAPE, popEmitterControls::hide);
         addEmitterButtons(popEmitterControls);
         Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
         popEmitterControls.addListener(new TableShowHideListener() {

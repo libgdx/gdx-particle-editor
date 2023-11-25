@@ -1,6 +1,7 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor.SystemCursor;
@@ -30,6 +31,9 @@ public class PopImageError extends PopTable {
 
     public PopImageError(String message, String error, FileHandle particleFile, boolean merge) {
         super(skin.get(WindowStyle.class));
+
+        setHideOnUnfocus(true);
+        key(Keys.ESCAPE, this::hide);
 
         this.message = message;
         this.error = error;
@@ -80,7 +84,6 @@ public class PopImageError extends PopTable {
         Listeners.addHandListener(textButton);
         Listeners.onChange(textButton, () -> {
             hide();
-            Gdx.input.setInputProcessor(stage);
         });
 
         textButton = new TextButton("Open log", skin);
@@ -94,7 +97,6 @@ public class PopImageError extends PopTable {
             }
 
             hide();
-            Gdx.input.setInputProcessor(stage);
         });
     }
 }

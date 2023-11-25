@@ -1,11 +1,14 @@
 package com.ray3k.gdxparticleeditor.runnables;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.ray3k.gdxparticleeditor.Core;
 import com.ray3k.gdxparticleeditor.Settings;
 import com.ray3k.gdxparticleeditor.widgets.poptables.PopError;
+import com.ray3k.stripe.PopTable.TableShowHideListener;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,7 +55,18 @@ public class SaveRunnable implements Runnable {
             } catch (IOException e) {
                 var error = "Error saving particle file.";
                 var pop = new PopError(error, e.getMessage());
-                pop.show(stage);
+                pop.addListener(new TableShowHideListener() {
+                    @Override
+                    public void tableShown(Event event) {
+                        Gdx.input.setInputProcessor(foregroundStage);
+                    }
+
+                    @Override
+                    public void tableHidden(Event event) {
+                        Gdx.input.setInputProcessor(stage);
+                    }
+                });
+                pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
                 fileError = true;
@@ -68,7 +82,18 @@ public class SaveRunnable implements Runnable {
                 } catch (GdxRuntimeException e) {
                     var error = "Error copying files to save location.";
                     var pop = new PopError(error, e.getMessage());
-                    pop.show(stage);
+                    pop.addListener(new TableShowHideListener() {
+                        @Override
+                        public void tableShown(Event event) {
+                            Gdx.input.setInputProcessor(foregroundStage);
+                        }
+
+                        @Override
+                        public void tableHidden(Event event) {
+                            Gdx.input.setInputProcessor(stage);
+                        }
+                    });
+                    pop.show(foregroundStage);
 
                     Gdx.app.error(Core.class.getName(), error, e);
                     fileError = true;

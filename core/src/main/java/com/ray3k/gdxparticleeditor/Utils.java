@@ -2,6 +2,7 @@ package com.ray3k.gdxparticleeditor;
 
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Net;
 import com.badlogic.gdx.Net.HttpMethods;
 import com.badlogic.gdx.Net.HttpRequest;
@@ -133,6 +134,17 @@ public class Utils {
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
             var pop = new PopImageError("Error loading particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, false);
+            pop.addListener(new TableShowHideListener() {
+                @Override
+                public void tableShown(Event event) {
+                    Gdx.input.setInputProcessor(foregroundStage);
+                }
+
+                @Override
+                public void tableHidden(Event event) {
+                    Gdx.input.setInputProcessor(stage);
+                }
+            });
             pop.show(foregroundStage);
 
             Gdx.app.error(Core.class.getName(), "Error loading particle file.", e);
@@ -230,6 +242,17 @@ public class Utils {
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
             var pop = new PopImageError("Error merging particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, true);
+            pop.addListener(new TableShowHideListener() {
+                @Override
+                public void tableShown(Event event) {
+                    Gdx.input.setInputProcessor(foregroundStage);
+                }
+
+                @Override
+                public void tableHidden(Event event) {
+                    Gdx.input.setInputProcessor(stage);
+                }
+            });
             pop.show(foregroundStage);
 
             Gdx.app.error(Core.class.getName(), "Error merging particle file.", e);
