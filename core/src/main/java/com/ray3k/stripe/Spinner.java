@@ -287,7 +287,7 @@ public class Spinner extends Table implements Disableable {
     }
 
     private void addHoldAction(boolean increase) {
-        stopNormalPress = false;
+        removeHoldAction();
 
         var repeatedAction = Actions.delay(HOLD_ACTION_REPEAT_DELAY, Actions.run(() -> {
             fire(new ChangeEvent());
@@ -296,7 +296,7 @@ public class Spinner extends Table implements Disableable {
             if (increase) addValue(increment);
             else subtractValue(increment);
         }));
-        
+
         holdAction = Actions.delay(HOLD_ACTION_START_DELAY, Actions.forever(repeatedAction));
         addAction(holdAction);
     }

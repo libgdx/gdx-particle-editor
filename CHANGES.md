@@ -1,6 +1,7 @@
 # Changelog
 ### Version 1.0.1
 * Removed all references to Particle Park Pro
+* Minor bugfixes and code cleanup
 ### Version 1.0.0
 * Rebranded app as GDX Particle Editor
 * Fixed PPM not being applied at app start
