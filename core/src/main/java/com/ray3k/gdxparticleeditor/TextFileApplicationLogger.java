@@ -26,6 +26,7 @@ package com.ray3k.gdxparticleeditor;
 
 import com.badlogic.gdx.ApplicationLogger;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
 
 import java.io.PrintStream;
 
@@ -41,14 +42,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void log(String tag, String message) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.out.println(tag + ": " + message);
     }
 
     @Override
     public void log(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.out.println(tag + ": " + message);
@@ -57,14 +58,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void error(String tag, String message) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.err.println(tag + ": " + message);
     }
 
     @Override
     public void error(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.err.println(tag + ": " + message);
@@ -73,14 +74,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void debug(String tag, String message) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.out.println(tag + ": " + message);
     }
 
     @Override
     public void debug(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.out.println(tag + ": " + message);
@@ -91,5 +92,10 @@ public class TextFileApplicationLogger implements ApplicationLogger {
         PrintStream printStream = new PrintStream(logFileHandle.write(true));
         exception.printStackTrace(printStream);
         printStream.close();
+    }
+
+    private String retrieveSystemDetails() {
+        return "Version: " + Core.version +
+            "\nOS: " + (UIUtils.isMac ? "Mac" : UIUtils.isWindows ? "Windows" : UIUtils.isLinux ? "Linux" : "Other") + "\n";
     }
 }
