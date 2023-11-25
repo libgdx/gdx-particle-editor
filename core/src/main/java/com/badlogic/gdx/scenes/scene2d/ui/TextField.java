@@ -842,7 +842,7 @@ public class TextField extends Widget implements Disableable {
             }
             if (count == 3) selectAll();
             Stage stage = getStage();
-            if (stage != null) stage.setKeyboardFocus(TextField.this);
+            if (!disabled && stage != null) stage.setKeyboardFocus(TextField.this);
         }
 
         public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
