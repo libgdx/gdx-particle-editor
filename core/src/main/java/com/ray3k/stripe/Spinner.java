@@ -129,7 +129,7 @@ public class Spinner extends Table implements Disableable {
             @Override
             public boolean acceptChar(TextField textField1, char c) {
                 boolean returnValue = false;
-                if ((c >= 48 && c <= 57) || c == 45/* || (decimalPlaces > 0 && c == 46)*/ || c == 46) {
+                if ((c >= 48 && c <= 57) || c == 45 || c == 46) {
                     returnValue = true;
                 }
                 return returnValue;
