@@ -25,6 +25,7 @@ import com.ray3k.tenpatch.TenPatchDrawable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
 import static com.ray3k.gdxparticleeditor.Core.stage;
 import static com.ray3k.gdxparticleeditor.Listeners.handListener;
@@ -174,7 +175,7 @@ public class ColorGraph extends Table {
     }
 
     private NodeData createNode(float value, Color color, boolean stationary) {
-        final var tapCountInterval = .4f;
+        final var tapCountInterval = .2f;
 
         var node = new ImageButton(nodeStyle);
         var nodeData = new NodeData();
@@ -276,7 +277,7 @@ public class ColorGraph extends Table {
                                     fire(new ColorGraphEvent(CHANGE_CANCEL, nodeData.color));
                                 }
                             });
-                            cp.show(foregroundStage);
+                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.15f)));
                             cp.addListener(new TableShowHideListener() {
                                 @Override
                                 public void tableShown(Event event) {
