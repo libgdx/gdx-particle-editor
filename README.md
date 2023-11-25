@@ -18,7 +18,7 @@ The GDX Particle Editor is now the official particle editor for libGDX. These ar
 
 * Download the latest release from here: [releases](https://github.com/libgdx/gdx-particle-editor/releases)
 * Ensure you have at least JDK 11 installed on your system: [download](https://bell-sw.com/pages/downloads/)
-* Run the jar file: `java -jar particleparkpro.jar`
+* Run the jar file: `java -jar gdx-particle-editor.jar`
 
 ## How to create particles
 
