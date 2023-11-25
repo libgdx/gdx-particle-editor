@@ -41,8 +41,12 @@ public class FileDialogs {
         var strings = response.split("\\|");
         var returnValue = new Array<FileHandle>();
         for (var string : strings) {
-            returnValue.add(Gdx.files.absolute(string));
+            var file = Gdx.files.absolute(string);
+            if (!file.exists()) continue;
+            returnValue.add(file);
         }
+
+        if (returnValue.size == 0) return null;
 
         return returnValue;
     }
@@ -73,7 +77,11 @@ public class FileDialogs {
 
         if (response == null) return null;
 
-        return Gdx.files.absolute(response);
+        var file = Gdx.files.absolute(response);
+
+        if (!file.exists()) return null;
+
+        return file;
     }
 
     public static FileHandle saveDialog(String title, String defaultPath, String defaultName, String[] filterPatterns, String filterDescription) {
