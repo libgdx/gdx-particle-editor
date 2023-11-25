@@ -108,6 +108,15 @@ public class Listeners {
         });
     }
 
+    public static void onFocus(Actor actor, Runnable runnable) {
+        actor.addListener(new FocusListener() {
+            @Override
+            public void keyboardFocusChanged(FocusEvent event, Actor actor, boolean focused) {
+                if (event.isFocused()) runnable.run();
+            }
+        });
+    }
+
     public static void addHandListener(Actor actor) {
         actor.addListener(handListener);
     }
