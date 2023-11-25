@@ -75,6 +75,7 @@ public class PopPreviewSettings extends PopTable {
         table.add(label).padLeft(tabWidth);
 
         var pixelsPerMeterSpinner = new Spinner(getPixelsPerMeter(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        pixelsPerMeterSpinner.setHoldIncrement(10);
         table.add(pixelsPerMeterSpinner).spaceLeft(itemSpacing).width(spinnerWidth);
         addHandListener(pixelsPerMeterSpinner.getButtonMinus());
         addHandListener(pixelsPerMeterSpinner.getButtonPlus());
@@ -103,6 +104,7 @@ public class PopPreviewSettings extends PopTable {
         table.add(label).padLeft(tabWidth);
 
         var deltaMultiplierSpinner = new Spinner(getDeltaMultiplier(), .1f, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        deltaMultiplierSpinner.setHoldIncrement(1f);
         table.add(deltaMultiplierSpinner).spaceLeft(itemSpacing).width(spinnerWidth);
         addHandListener(deltaMultiplierSpinner.getButtonMinus());
         addHandListener(deltaMultiplierSpinner.getButtonPlus());
@@ -305,6 +307,7 @@ public class PopPreviewSettings extends PopTable {
         previewSizeTable.add(label).padLeft(tabWidth);
 
         var xSpinner = new Spinner(previewImageX, 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        xSpinner.setHoldIncrement(10);
         previewSizeTable.add(xSpinner).width(spinnerWidth);
         addHandListener(xSpinner.getButtonMinus());
         addHandListener(xSpinner.getButtonPlus());
@@ -315,6 +318,7 @@ public class PopPreviewSettings extends PopTable {
         previewSizeTable.add(label).padLeft(tabWidth);
 
         var ySpinner = new Spinner(previewImageY, 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        ySpinner.setHoldIncrement(10);
         previewSizeTable.add(ySpinner).width(spinnerWidth);
         addHandListener(ySpinner.getButtonMinus());
         addHandListener(ySpinner.getButtonPlus());
@@ -326,6 +330,7 @@ public class PopPreviewSettings extends PopTable {
         previewSizeTable.add(label).padLeft(tabWidth);
 
         var widthSpinner = new Spinner(previewImageWidth, 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthSpinner.setHoldIncrement(10);
         previewSizeTable.add(widthSpinner).width(spinnerWidth);
         addHandListener(widthSpinner.getButtonMinus());
         addHandListener(widthSpinner.getButtonPlus());
@@ -336,6 +341,7 @@ public class PopPreviewSettings extends PopTable {
         previewSizeTable.add(label).padLeft(tabWidth);
 
         var heightSpinner = new Spinner(previewImageHeight, 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightSpinner.setHoldIncrement(10);
         previewSizeTable.add(heightSpinner).width(spinnerWidth);
         addHandListener(heightSpinner.getButtonMinus());
         addHandListener(heightSpinner.getButtonPlus());
@@ -412,6 +418,7 @@ public class PopPreviewSettings extends PopTable {
         gridTable.add(label).padLeft(tabWidth);
 
         var majorGridlinesSpinner = new Spinner(getGridMajorGridlines(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        majorGridlinesSpinner.setHoldIncrement(10);
         gridTable.add(majorGridlinesSpinner).width(spinnerWidth);
         addHandListener(majorGridlinesSpinner.getButtonMinus());
         addHandListener(majorGridlinesSpinner.getButtonPlus());
@@ -427,6 +434,7 @@ public class PopPreviewSettings extends PopTable {
         gridTable.add(label).padLeft(tabWidth);
 
         var minorGridlinesSpinner = new Spinner(getGridMinorGridlines(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        minorGridlinesSpinner.setHoldIncrement(10);
         gridTable.add(minorGridlinesSpinner).width(spinnerWidth);
         addHandListener(minorGridlinesSpinner.getButtonMinus());
         addHandListener(minorGridlinesSpinner.getButtonPlus());

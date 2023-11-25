@@ -202,6 +202,7 @@ public class SpawnSubPanel extends Panel {
         //High single
         widthHighToggleWidget.table1.defaults().space(itemSpacing);
         var widthHighSpinner = new Spinner(valueWidth.getHighMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthHighSpinner.setHoldIncrement(10);
         widthHighSpinner.setProgrammaticChangeEvents(false);
         widthHighToggleWidget.table1.add(widthHighSpinner).width(spinnerWidth);
         addIbeamListener(widthHighSpinner.getTextField());
@@ -219,6 +220,7 @@ public class SpawnSubPanel extends Panel {
         //High range
         widthHighToggleWidget.table2.defaults().space(itemSpacing);
         var widthHighMinSpinner = new Spinner(valueWidth.getHighMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthHighMinSpinner.setHoldIncrement(10);
         widthHighMinSpinner.setProgrammaticChangeEvents(false);
         widthHighToggleWidget.table2.add(widthHighMinSpinner).width(spinnerWidth);
         addIbeamListener(widthHighMinSpinner.getTextField());
@@ -228,6 +230,7 @@ public class SpawnSubPanel extends Panel {
         addTooltip(widthHighMinSpinner, "The minimum high value for the width of the spawn shape", Align.top, Align.top, tooltipBottomArrowStyle);
 
         var widthHighMaxSpinner = new Spinner(valueWidth.getHighMax(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthHighMaxSpinner.setHoldIncrement(10);
         widthHighMaxSpinner.setProgrammaticChangeEvents(false);
         widthHighToggleWidget.table2.add(widthHighMaxSpinner).width(spinnerWidth);
         addIbeamListener(widthHighMaxSpinner.getTextField());
@@ -255,6 +258,7 @@ public class SpawnSubPanel extends Panel {
         //Low single
         widthLowToggleWidget.table1.defaults().space(itemSpacing);
         var widthLowSpinner = new Spinner(valueWidth.getLowMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthLowSpinner.setHoldIncrement(10);
         widthLowSpinner.setProgrammaticChangeEvents(false);
         widthLowToggleWidget.table1.add(widthLowSpinner).width(spinnerWidth);
         addIbeamListener(widthLowSpinner.getTextField());
@@ -272,6 +276,7 @@ public class SpawnSubPanel extends Panel {
         //Low range
         widthLowToggleWidget.table2.defaults().space(itemSpacing);
         var widthLowMinSpinner = new Spinner(valueWidth.getLowMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthLowMinSpinner.setHoldIncrement(10);
         widthLowMinSpinner.setProgrammaticChangeEvents(false);
         widthLowToggleWidget.table2.add(widthLowMinSpinner).width(spinnerWidth);
         addIbeamListener(widthLowMinSpinner.getTextField());
@@ -281,6 +286,7 @@ public class SpawnSubPanel extends Panel {
         addTooltip(widthLowMinSpinner, "The minimum low value for the width of the spawn shape", Align.top, Align.top, tooltipBottomArrowStyle);
 
         var widthLowMaxSpinner = new Spinner(valueWidth.getLowMax(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        widthLowMaxSpinner.setHoldIncrement(10);
         widthLowMaxSpinner.setProgrammaticChangeEvents(false);
         widthLowToggleWidget.table2.add(widthLowMaxSpinner).width(spinnerWidth);
         addIbeamListener(widthLowMaxSpinner.getTextField());
@@ -345,6 +351,7 @@ public class SpawnSubPanel extends Panel {
         //High single
         heightHighToggleWidget.table1.defaults().space(itemSpacing);
         var heightHighSpinner = new Spinner(valueHeight.getHighMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightHighSpinner.setHoldIncrement(10);
         heightHighSpinner.setProgrammaticChangeEvents(false);
         heightHighToggleWidget.table1.add(heightHighSpinner).width(spinnerWidth);
         addIbeamListener(heightHighSpinner.getTextField());
@@ -362,6 +369,7 @@ public class SpawnSubPanel extends Panel {
         //High range
         heightHighToggleWidget.table2.defaults().space(itemSpacing);
         var heightHighMinSpinner = new Spinner(valueHeight.getHighMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightHighMinSpinner.setHoldIncrement(10);
         heightHighMinSpinner.setProgrammaticChangeEvents(false);
         heightHighToggleWidget.table2.add(heightHighMinSpinner).width(spinnerWidth);
         addIbeamListener(heightHighMinSpinner.getTextField());
@@ -371,6 +379,7 @@ public class SpawnSubPanel extends Panel {
         addTooltip(heightHighMinSpinner, "The minimum high value for the height of the spawn shape", Align.top, Align.top, tooltipBottomArrowStyle);
 
         var heightHighMaxSpinner = new Spinner(valueHeight.getHighMax(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightHighMaxSpinner.setHoldIncrement(10);
         heightHighMaxSpinner.setProgrammaticChangeEvents(false);
         heightHighToggleWidget.table2.add(heightHighMaxSpinner).width(spinnerWidth);
         addIbeamListener(heightHighMaxSpinner.getTextField());
@@ -398,6 +407,7 @@ public class SpawnSubPanel extends Panel {
         //Low single
         heightLowToggleWidget.table1.defaults().space(itemSpacing);
         var heightLowSpinner = new Spinner(valueHeight.getLowMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightLowSpinner.setHoldIncrement(10);
         heightLowSpinner.setProgrammaticChangeEvents(false);
         heightLowToggleWidget.table1.add(heightLowSpinner).width(spinnerWidth);
         addIbeamListener(heightLowSpinner.getTextField());
@@ -415,6 +425,7 @@ public class SpawnSubPanel extends Panel {
         //Low range
         heightLowToggleWidget.table2.defaults().space(itemSpacing);
         var heightLowMinSpinner = new Spinner(valueHeight.getLowMin(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightLowMinSpinner.setHoldIncrement(10);
         heightLowMinSpinner.setProgrammaticChangeEvents(false);
         heightLowToggleWidget.table2.add(heightLowMinSpinner).width(spinnerWidth);
         addIbeamListener(heightLowMinSpinner.getTextField());
@@ -424,6 +435,7 @@ public class SpawnSubPanel extends Panel {
         addTooltip(heightLowMinSpinner, "The minimum low value for the height of the spawn shape", Align.top, Align.top, tooltipBottomArrowStyle);
 
         var heightLowMaxSpinner = new Spinner(valueHeight.getLowMax(), 1, SPINNER_DECIMAL_PLACES, Orientation.RIGHT_STACK, spinnerStyle);
+        heightLowMaxSpinner.setHoldIncrement(10);
         heightLowMaxSpinner.setProgrammaticChangeEvents(false);
         heightLowToggleWidget.table2.add(heightLowMaxSpinner).width(spinnerWidth);
         addIbeamListener(heightLowMaxSpinner.getTextField());

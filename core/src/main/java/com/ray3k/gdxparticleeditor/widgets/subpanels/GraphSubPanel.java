@@ -98,6 +98,7 @@ public class GraphSubPanel extends Panel {
         //High single
         highToggleWidget.table1.defaults().space(itemSpacing);
         var highValueSpinner = new Spinner(value.getHighMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        highValueSpinner.setHoldIncrement(10);
         highValueSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table1.add(highValueSpinner).width(spinnerWidth);
         addIbeamListener(highValueSpinner.getTextField());
@@ -115,6 +116,7 @@ public class GraphSubPanel extends Panel {
         //High range
         highToggleWidget.table2.defaults().space(itemSpacing);
         var highMinValueSpinner = new Spinner(value.getHighMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        highMinValueSpinner.setHoldIncrement(10);
         highMinValueSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table2.add(highMinValueSpinner).width(spinnerWidth);
         addIbeamListener(highMinValueSpinner.getTextField());
@@ -124,6 +126,7 @@ public class GraphSubPanel extends Panel {
         addTooltip(highMinValueSpinner, "The minimum high value for " + tooltip, Align.top, Align.top, tooltipBottomArrowStyle);
 
         var highMaxValueSpinner = new Spinner(value.getHighMax(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        highMaxValueSpinner.setHoldIncrement(10);
         highMaxValueSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table2.add(highMaxValueSpinner).width(spinnerWidth);
         addIbeamListener(highMaxValueSpinner.getTextField());
@@ -151,6 +154,7 @@ public class GraphSubPanel extends Panel {
         //Low single
         lowToggleWidget.table1.defaults().space(itemSpacing);
         var lowValueSpinner = new Spinner(value.getLowMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        lowValueSpinner.setHoldIncrement(10);
         lowValueSpinner.setProgrammaticChangeEvents(false);
         lowToggleWidget.table1.add(lowValueSpinner).width(spinnerWidth);
         addIbeamListener(lowValueSpinner.getTextField());
@@ -168,6 +172,7 @@ public class GraphSubPanel extends Panel {
         //Low range
         lowToggleWidget.table2.defaults().space(itemSpacing);
         var lowMinValueSpinner = new Spinner(value.getLowMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        lowMinValueSpinner.setHoldIncrement(10);
         lowMinValueSpinner.setProgrammaticChangeEvents(false);
         lowToggleWidget.table2.add(lowMinValueSpinner).width(spinnerWidth);
         addIbeamListener(lowMinValueSpinner.getTextField());
@@ -177,6 +182,7 @@ public class GraphSubPanel extends Panel {
         addTooltip(lowMinValueSpinner, "The minimum low value for " + tooltip, Align.top, Align.top, tooltipBottomArrowStyle);
 
         var lowMaxValueSpinner = new Spinner(value.getLowMax(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        lowMaxValueSpinner.setHoldIncrement(10);
         lowMaxValueSpinner.setProgrammaticChangeEvents(false);
         lowToggleWidget.table2.add(lowMaxValueSpinner).width(spinnerWidth);
         addIbeamListener(lowMaxValueSpinner.getTextField());

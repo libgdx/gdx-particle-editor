@@ -90,6 +90,7 @@ public class PopEditorSettings extends PopTable {
         settingsTable.add(label);
 
         var spinner = new Spinner(0, 1, 0, Orientation.RIGHT_STACK, spinnerStyle);
+        spinner.setHoldIncrement(10);
         spinner.setValue(preferences.getInteger(NAME_MAXIMUM_UNDOS, DEFAULT_MAXIMUM_UNDOS));
         spinner.setProgrammaticChangeEvents(false);
         settingsTable.add(spinner);

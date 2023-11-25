@@ -56,6 +56,7 @@ public class RangeSubPanel extends Panel {
         //Value single
         highToggleWidget.table1.defaults().space(itemSpacing);
         var valueSpinner = new Spinner(value.getLowMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        valueSpinner.setHoldIncrement(10);
         valueSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table1.add(valueSpinner).width(spinnerWidth);
         addIbeamListener(valueSpinner.getTextField());
@@ -73,6 +74,7 @@ public class RangeSubPanel extends Panel {
         //Value range
         highToggleWidget.table2.defaults().space(itemSpacing);
         var valueMinSpinner = new Spinner(value.getLowMin(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        valueMinSpinner.setHoldIncrement(10);
         valueMinSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table2.add(valueMinSpinner).width(spinnerWidth);
         addIbeamListener(valueMinSpinner.getTextField());
@@ -82,6 +84,7 @@ public class RangeSubPanel extends Panel {
         addTooltip(valueMinSpinner, "The minimum " + tooltip, Align.top, Align.top, tooltipBottomArrowStyle);
 
         var valueMaxSpinner = new Spinner(value.getLowMax(), 1, decimalPlaces, Orientation.RIGHT_STACK, spinnerStyle);
+        valueMaxSpinner.setHoldIncrement(10);
         valueMaxSpinner.setProgrammaticChangeEvents(false);
         highToggleWidget.table2.add(valueMaxSpinner).width(spinnerWidth);
         addIbeamListener(valueMaxSpinner.getTextField());
