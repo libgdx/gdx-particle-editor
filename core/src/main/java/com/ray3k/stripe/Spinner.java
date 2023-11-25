@@ -46,7 +46,8 @@ public class Spinner extends Table implements Disableable {
     private BigDecimal value;
     private Float minimum = -Float.MAX_VALUE;
     private Float maximum = Float.MAX_VALUE;
-    private final BigDecimal increment;
+    private BigDecimal increment;
+    private BigDecimal holdIncrement;
     private int decimalPlaces;
     private TextField textField;
     private Button buttonMinus;
@@ -115,10 +116,10 @@ public class Spinner extends Table implements Disableable {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if (keycode == Keys.UP) {
-                    addValue();
+                    addValue(increment);
                     fire(new ChangeListener.ChangeEvent());
                 } else if (keycode == Keys.DOWN) {
-                    subtractValue();
+                    subtractValue(increment);
                     fire(new ChangeListener.ChangeEvent());
                 }
                 return false;
@@ -129,7 +130,7 @@ public class Spinner extends Table implements Disableable {
             @Override
             public boolean acceptChar(TextField textField1, char c) {
                 boolean returnValue = false;
-                if ((c >= 48 && c <= 57) || c == 45/* || (decimalPlaces > 0 && c == 46)*/ || c == 46) {
+                if ((c >= 48 && c <= 57) || c == 45 || c == 46) {
                     returnValue = true;
                 }
                 return returnValue;
@@ -191,7 +192,7 @@ public class Spinner extends Table implements Disableable {
         buttonMinus.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (!stopNormalPress) subtractValue();
+                if (!stopNormalPress) subtractValue(increment);
             }
         });
 
@@ -216,7 +217,7 @@ public class Spinner extends Table implements Disableable {
         buttonPlus.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (!stopNormalPress) addValue();
+                if (!stopNormalPress) addValue(increment);
             }
         });
 
@@ -286,13 +287,17 @@ public class Spinner extends Table implements Disableable {
     }
 
     private void addHoldAction(boolean increase) {
-        stopNormalPress = false;
-        holdAction = Actions.delay(HOLD_ACTION_START_DELAY, Actions.forever(Actions.delay(HOLD_ACTION_REPEAT_DELAY, Actions.run(() -> {
+        removeHoldAction();
+
+        var repeatedAction = Actions.delay(HOLD_ACTION_REPEAT_DELAY, Actions.run(() -> {
             fire(new ChangeEvent());
             stopNormalPress = true;
-            if (increase) addValue();
-            else subtractValue();
-        }))));
+            var increment = holdIncrement != null ? holdIncrement : this.increment;
+            if (increase) addValue(increment);
+            else subtractValue(increment);
+        }));
+
+        holdAction = Actions.delay(HOLD_ACTION_START_DELAY, Actions.forever(repeatedAction));
         addAction(holdAction);
     }
 
@@ -304,7 +309,7 @@ public class Spinner extends Table implements Disableable {
         holdAction = null;
     }
 
-    private void subtractValue() {
+    private void subtractValue(BigDecimal increment) {
         value = value.subtract(increment);
         if (value.floatValue() < minimum) {
             value = BigDecimal.valueOf(minimum);
@@ -315,7 +320,7 @@ public class Spinner extends Table implements Disableable {
         updateText();
     }
 
-    private void addValue() {
+    private void addValue(BigDecimal increment) {
         value = value.add(increment);
         if (value.floatValue() < minimum) {
             value = BigDecimal.valueOf(minimum);
@@ -361,6 +366,30 @@ public class Spinner extends Table implements Disableable {
 
     public void setMaximum(float maximum) {
         this.maximum = maximum;
+    }
+
+    public BigDecimal getIncrement() {
+        return increment;
+    }
+
+    public void setIncrement(float increment) {
+        this.increment = BigDecimal.valueOf(increment);
+    }
+
+    public void setIncrement(BigDecimal increment) {
+        this.increment = increment;
+    }
+
+    public BigDecimal getHoldIncrement() {
+        return holdIncrement;
+    }
+
+    public void setHoldIncrement(float holdIncrement) {
+        this.holdIncrement = BigDecimal.valueOf(holdIncrement);
+    }
+
+    public void setFastIncrement(BigDecimal fastIncrement) {
+        this.holdIncrement = fastIncrement;
     }
 
     private void updateText() {

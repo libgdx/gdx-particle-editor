@@ -1,4 +1,10 @@
 # Changelog
+### Version 1.0.1
+* Removed all references to Particle Park Pro
+* Escape hides relevant dialogs
+* Fixed crash when an open dialog returns a file that does not exist
+* Fixed unable to set keyboard shortcuts
+* Minor bugfixes and code cleanup
 ### Version 1.0.0
 * Rebranded app as GDX Particle Editor
 * Fixed PPM not being applied at app start

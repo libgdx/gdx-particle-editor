@@ -324,9 +324,6 @@ public class PopTable extends Table {
 
         Action action = sequence(alpha(0), fadeIn(.2f));
         this.show(stage, action);
-        if (!suppressKeyInputListeners) for (InputListener inputListener : keyInputListeners) {
-            stage.addListener(inputListener);
-        }
     }
 
     public void show(Stage stage, Action action) {
@@ -369,6 +366,10 @@ public class PopTable extends Table {
         actor = stage.getScrollFocus();
         if (actor != null && !actor.isDescendantOf(this)) previousScrollFocus = actor;
         stage.addListener(focusListener);
+
+        if (!suppressKeyInputListeners) for (InputListener inputListener : keyInputListeners) {
+            stage.addListener(inputListener);
+        }
     }
 
     public static class PopTableStyle {

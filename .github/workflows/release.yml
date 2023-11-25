@@ -23,8 +23,8 @@ jobs:
     - name: Upload jar artifact
       uses: actions/upload-artifact@v2
       with:
-        name: particleparkpro.jar
-        path: core/build/lib/particleparkpro.jar
+        name: gdx-particle-editor.jar
+        path: core/build/lib/gdx-particle-editor.jar
 
   release:
     permissions: write-all
@@ -54,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: particleparkpro.jar/particleparkpro.jar
-          asset_name: particleparkpro.jar
+          asset_path: gdx-particle-editor.jar/gdx-particle-editor.jar
+          asset_name: gdx-particle-editor.jar
           asset_content_type: application/x-java-archive
