@@ -172,6 +172,11 @@ public class ColorGraph extends Table {
                 createNewNode = false;
                 openColorPicker = false;
             }
+
+            @Override
+            public void dragStop(InputEvent event, float x, float y, int pointer) {
+                openColorPicker = true;
+            }
         };
     }
 
