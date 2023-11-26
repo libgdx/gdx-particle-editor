@@ -52,6 +52,7 @@ public class ColorGraph extends Table {
     private Action colorPickerAction;
     private Table colorTable;
     private Table nodeTable;
+    private PopColorPicker cp;
 
     public ColorGraph(ColorGraphStyle style) {
         nodeStartStyle = new ImageButtonStyle();
@@ -238,13 +239,15 @@ public class ColorGraph extends Table {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (getTapCount() == 1 && event.getButton() == Buttons.LEFT && openColorPicker) {
+                    createNewNode = false;
                     openColorPicker = false;
                     colorPickerAction = Actions.delay(tapCountInterval,
                         Actions.run(() -> Gdx.app.postRunnable(() -> {
                             colorPickerAction = null;
+                            if (cp != null) return;
                             allowDrag = false;
                             Gdx.input.setInputProcessor(foregroundStage);
-                            var cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
+                            cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
                             cp.setHideOnUnfocus(true);
                             cp.setButtonListener(handListener);
                             cp.setTextFieldListener(ibeamListener);
@@ -277,18 +280,18 @@ public class ColorGraph extends Table {
                                     fire(new ColorGraphEvent(CHANGE_CANCEL, nodeData.color));
                                 }
                             });
-                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.15f)));
                             cp.addListener(new TableShowHideListener() {
                                 @Override
                                 public void tableShown(Event event) {
-
                                 }
 
                                 @Override
                                 public void tableHidden(Event event) {
                                     Gdx.input.setInputProcessor(stage);
+                                    cp = null;
                                 }
                             });
+                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.15f)));
                         })));
                     node.addAction(colorPickerAction);
                 }

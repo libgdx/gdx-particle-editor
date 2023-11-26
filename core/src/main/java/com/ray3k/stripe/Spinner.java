@@ -23,6 +23,8 @@
  ******************************************************************************/
 package com.ray3k.stripe;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -290,6 +292,7 @@ public class Spinner extends Table implements Disableable {
         removeHoldAction();
 
         var repeatedAction = Actions.delay(HOLD_ACTION_REPEAT_DELAY, Actions.run(() -> {
+            if (!Gdx.input.isButtonPressed(Buttons.LEFT)) removeHoldAction();
             fire(new ChangeEvent());
             stopNormalPress = true;
             var increment = holdIncrement != null ? holdIncrement : this.increment;

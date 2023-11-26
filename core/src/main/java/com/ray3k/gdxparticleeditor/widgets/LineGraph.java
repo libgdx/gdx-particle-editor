@@ -207,6 +207,7 @@ public class LineGraph extends Table {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                createNewNode = false;
                 if (nodes.indexOf(node, true) != 0 && (event.getButton() == Buttons.RIGHT || getTapCount() >= 2)) {
                     node.remove();
                     nodes.removeValue(node, true);
