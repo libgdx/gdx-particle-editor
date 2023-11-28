@@ -232,7 +232,7 @@ public class Spinner extends Table implements Disableable {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 addHoldAction(true);
-                return false;
+                return true;
             }
 
             @Override
