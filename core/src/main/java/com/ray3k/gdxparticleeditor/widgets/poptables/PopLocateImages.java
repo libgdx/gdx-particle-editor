@@ -45,7 +45,7 @@ public class PopLocateImages extends PopTable {
         setKeepCenteredInWindow(true);
         setHideOnUnfocus(true);
 
-        var pattern = new Pattern("^.*-\\r+\\n");
+        var pattern = new Pattern("^.*-\\r*\\n");
         pattern.setFlags(REFlags.DOTALL);
 
         var text = particleFileHandle.readString(null);
