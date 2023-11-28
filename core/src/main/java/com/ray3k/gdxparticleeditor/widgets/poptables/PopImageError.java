@@ -89,8 +89,6 @@ public class PopImageError extends PopTable {
             hide();
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
-            System.out.println(Gdx.input.getInputProcessor() == Core.stage);
-
             var pop = new PopLocateImages(particleFile, merge);
             pop.show(foregroundStage);
         });
