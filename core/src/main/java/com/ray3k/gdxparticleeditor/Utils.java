@@ -238,6 +238,10 @@ public class Utils {
     }
 
     public static boolean mergeParticle(FileHandle fileHandle) {
+        return mergeParticle(fileHandle, null);
+    }
+
+    public static boolean mergeParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap) {
         var newParticleEffect = new ParticleEffect();
         var oldActiveEmitters = new OrderedMap<ParticleEmitter, Boolean>();
         try {
@@ -245,8 +249,31 @@ public class Utils {
                 oldActiveEmitters.put(activeEmitter.key, activeEmitter.value);
             }
 
-            if (fileHandle.type() != FileType.Internal) newParticleEffect.load(fileHandle, fileHandle.parent());
-            else {
+            if (fileHandle.type() != FileType.Internal) {
+                newParticleEffect.loadEmitters(fileHandle);
+
+                if (imageFileMap == null) newParticleEffect.loadEmitterImages(fileHandle.parent());
+                else {
+                    for (var imageFile : imageFileMap) {
+                        var sprite = new Sprite(new Texture(imageFile.value));
+                        sprites.put(imageFile.value.name(), sprite);
+                    }
+                    fileHandles.putAll(imageFileMap);
+
+                    for (int i = 0, n = newParticleEffect.getEmitters().size; i < n; i++) {
+                        var emitter = newParticleEffect.getEmitters().get(i);
+                        var newSprites = new Array<Sprite>();
+                        if (emitter.getImagePaths().size == 0) continue;
+                        for (String imagePath : emitter.getImagePaths()) {
+                            String imageName = new File(imagePath.replace('\\', '/')).getName();
+                            Sprite sprite = sprites.get(imageName);
+                            if (sprite == null) throw new IllegalArgumentException("Image not found: " + imageName);
+                            newSprites.add(sprite);
+                        }
+                        emitter.setSprites(newSprites);
+                    }
+                }
+            } else {
                 var textureAtlas = new TextureAtlas(Gdx.files.internal("default/default.atlas"));
                 newParticleEffect.load(fileHandle, textureAtlas);
                 addInternalImages();

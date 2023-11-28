@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.ray3k.gdxparticleeditor.FileDialogs;
 import com.ray3k.gdxparticleeditor.Settings;
 import com.ray3k.gdxparticleeditor.Utils;
+import com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel;
 import com.ray3k.stripe.PopTable;
 import regexodus.Pattern;
 import regexodus.REFlags;
@@ -25,6 +26,8 @@ import regexodus.REFlags;
 import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
+import static com.ray3k.gdxparticleeditor.widgets.panels.EffectEmittersPanel.effectEmittersPanel;
+import static com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel.emitterPropertiesPanel;
 
 public class PopLocateImages extends PopTable {
     private Array<String> imagePaths = new Array<>();
@@ -134,8 +137,14 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            if (merge) Utils.mergeParticle(particleFileHandle);
-            else Utils.loadParticle(particleFileHandle, newFileHandles);
+            if (merge) Utils.mergeParticle(particleFileHandle, newFileHandles);
+            else {
+                Utils.loadParticle(particleFileHandle, newFileHandles);
+                selectedEmitter = particleEffect.getEmitters().first();
+            }
+            effectEmittersPanel.populateEmitters();
+            effectEmittersPanel.updateDisableableWidgets();
+            emitterPropertiesPanel.populateScrollTable(null);
             hide();
         });
 
