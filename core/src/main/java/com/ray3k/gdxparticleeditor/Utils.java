@@ -129,21 +129,9 @@ public class Utils {
             }
             newParticleEffect.setPosition(0, 0);
         } catch (Exception e) {
-            Gdx.input.setInputProcessor(foregroundStage);
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
             var pop = new PopImageError("Error loading particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, false);
-            pop.addListener(new TableShowHideListener() {
-                @Override
-                public void tableShown(Event event) {
-                    Gdx.input.setInputProcessor(foregroundStage);
-                }
-
-                @Override
-                public void tableHidden(Event event) {
-                    Gdx.input.setInputProcessor(stage);
-                }
-            });
             pop.show(foregroundStage);
 
             Gdx.app.error(Core.class.getName(), "Error loading particle file.", e);
@@ -237,21 +225,9 @@ public class Utils {
                 addInternalImages();
             }
         } catch (Exception e) {
-            Gdx.input.setInputProcessor(foregroundStage);
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
             var pop = new PopImageError("Error merging particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, true);
-            pop.addListener(new TableShowHideListener() {
-                @Override
-                public void tableShown(Event event) {
-                    Gdx.input.setInputProcessor(foregroundStage);
-                }
-
-                @Override
-                public void tableHidden(Event event) {
-                    Gdx.input.setInputProcessor(stage);
-                }
-            });
             pop.show(foregroundStage);
 
             Gdx.app.error(Core.class.getName(), "Error merging particle file.", e);

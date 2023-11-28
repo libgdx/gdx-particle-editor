@@ -2,8 +2,10 @@ package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cursor.SystemCursor;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -20,8 +22,7 @@ import com.ray3k.stripe.PopTable;
 import regexodus.Pattern;
 import regexodus.REFlags;
 
-import static com.ray3k.gdxparticleeditor.Core.skin;
-import static com.ray3k.gdxparticleeditor.Core.stage;
+import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
 
@@ -30,6 +31,7 @@ public class PopLocateImages extends PopTable {
     private ObjectMap<String, FileHandle> newFileHandles = new ObjectMap<>();
     private FileHandle particleFileHandle;
     private boolean merge;
+    private final InputProcessor previousInputProcessor;
 
     public PopLocateImages(FileHandle particleFileHandle, boolean merge) {
         super(skin.get(WindowStyle.class));
@@ -62,18 +64,16 @@ public class PopLocateImages extends PopTable {
         }
 
         populate();
-        addListener(new TableShowHideListener() {
-            @Override
-            public void tableShown(Event event) {
 
-            }
+        previousInputProcessor = Gdx.input.getInputProcessor();
+        Gdx.input.setInputProcessor(foregroundStage);
+    }
 
-            @Override
-            public void tableHidden(Event event) {
-                Gdx.input.setInputProcessor(stage);
-                Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
-            }
-        });
+    @Override
+    public void hide(Action action) {
+        super.hide(action);
+        if (Gdx.input.getInputProcessor() == foregroundStage) Gdx.input.setInputProcessor(previousInputProcessor);
+        Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
     }
 
     private void populate() {

@@ -2,14 +2,18 @@ package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor.SystemCursor;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
+import com.ray3k.gdxparticleeditor.Core;
 import com.ray3k.gdxparticleeditor.Listeners;
 import com.ray3k.gdxparticleeditor.Utils;
 import com.ray3k.stripe.PopTable;
@@ -29,6 +33,7 @@ public class PopImageError extends PopTable {
     private String message;
     private String error;
     private boolean merge;
+    private final InputProcessor previousInputProcessor;
 
     public PopImageError(String message, String error, FileHandle particleFile, boolean merge) {
         super(skin.get(WindowStyle.class));
@@ -41,6 +46,14 @@ public class PopImageError extends PopTable {
         this.merge = merge;
 
         populate(particleFile);
+        previousInputProcessor = Gdx.input.getInputProcessor();
+        Gdx.input.setInputProcessor(foregroundStage);
+    }
+
+    @Override
+    public void hide(Action action) {
+        super.hide(action);
+        if (Gdx.input.getInputProcessor() == foregroundStage) Gdx.input.setInputProcessor(previousInputProcessor);
     }
 
     private void populate(FileHandle particleFile) {
@@ -75,6 +88,8 @@ public class PopImageError extends PopTable {
         Listeners.onChange(textButton, () -> {
             hide();
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
+
+            System.out.println(Gdx.input.getInputProcessor() == Core.stage);
 
             var pop = new PopLocateImages(particleFile, merge);
             pop.show(foregroundStage);

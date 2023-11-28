@@ -1,5 +1,6 @@
 # Changelog
 ### Version 1.0.2
+* Fixed stage focus when the locate images dialog
 * Fix issues with mice that send two touch-downs instead of one
 * Minor bugfixes and code cleanup
 ### Version 1.0.1
