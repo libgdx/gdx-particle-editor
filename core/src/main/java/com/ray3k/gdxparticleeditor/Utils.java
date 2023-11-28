@@ -133,7 +133,7 @@ public class Utils {
                 else {
                     for (var imageFile : imageFileMap) {
                         var sprite = new Sprite(new Texture(imageFile.value));
-                        sprites.put(imageFile.value.name(), sprite);
+                        sprites.put(imageFile.key, sprite);
                     }
                     fileHandles.putAll(imageFileMap);
 

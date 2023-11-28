@@ -118,6 +118,7 @@ public class PopLocateImages extends PopTable {
                 var fileHandle = FileDialogs.openDialog("Locate image " + sibling.name(), Settings.getDefaultImagePath(), new String[] {"png","jpg","jpeg"}, "Image files (*.png;*.jpg;*.jpeg)");
                 if (fileHandle != null) {
                     newFileHandles.put(imagePath, fileHandle);
+                    addImagesFromFolder(fileHandle.parent());
                     populate();
                 }
             });
@@ -152,5 +153,14 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, this::hide);
+    }
+
+    private void addImagesFromFolder(FileHandle folder) {
+        for (var imagePath : imagePaths) {
+            if (newFileHandles.containsKey(imagePath)) continue;
+
+            var fileHandle = folder.child(imagePath);
+            if (fileHandle.exists()) newFileHandles.put(imagePath, fileHandle);
+        }
     }
 }
