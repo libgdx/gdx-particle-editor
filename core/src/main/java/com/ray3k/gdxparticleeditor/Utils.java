@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.ray3k.gdxparticleeditor.runnables.SaveAsRunnable;
@@ -118,16 +119,42 @@ public class Utils {
     }
 
     public static boolean loadParticle(FileHandle fileHandle) {
+        return loadParticle(fileHandle, null);
+    }
+
+    public static boolean loadParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap) {
         var newParticleEffect = new ParticleEffect();
         try {
-            if (fileHandle.type() != FileType.Internal)
-                newParticleEffect.load(fileHandle, fileHandle.parent());
-            else {
+            if (fileHandle.type() != FileType.Internal) {
+                newParticleEffect.loadEmitters(fileHandle);
+                newParticleEffect.setPosition(0, 0);
+
+                if (imageFileMap == null) newParticleEffect.loadEmitterImages(fileHandle.parent());
+                else {
+                    for (var imageFile : imageFileMap) {
+                        var sprite = new Sprite(new Texture(imageFile.value));
+                        sprites.put(imageFile.value.name(), sprite);
+                    }
+                    fileHandles.putAll(imageFileMap);
+
+                    for (int i = 0, n = newParticleEffect.getEmitters().size; i < n; i++) {
+                        var emitter = newParticleEffect.getEmitters().get(i);
+                        var newSprites = new Array<Sprite>();
+                        if (emitter.getImagePaths().size == 0) continue;
+                        for (String imagePath : emitter.getImagePaths()) {
+                            String imageName = new File(imagePath.replace('\\', '/')).getName();
+                            Sprite sprite = sprites.get(imageName);
+                            if (sprite == null) throw new IllegalArgumentException("Image not found: " + imageName);
+                            newSprites.add(sprite);
+                        }
+                        emitter.setSprites(newSprites);
+                    }
+                }
+            } else {
                 var textureAtlas = new TextureAtlas(Gdx.files.internal("default/default.atlas"));
                 newParticleEffect.load(fileHandle, textureAtlas);
                 addInternalImages();
             }
-            newParticleEffect.setPosition(0, 0);
         } catch (Exception e) {
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 

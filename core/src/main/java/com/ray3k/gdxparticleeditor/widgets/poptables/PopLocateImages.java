@@ -51,12 +51,10 @@ public class PopLocateImages extends PopTable {
         var text = particleFileHandle.readString(null);
         var matcher = pattern.matcher(text);
         text = matcher.replaceAll("");
-        System.out.println(text +"\nend part 1");
 
         pattern = new Pattern("\\n*$");
         matcher = pattern.matcher(text);
         text = matcher.replaceAll("");
-        System.out.println(text +"\nend part 2");
 
         imagePaths.addAll(text.split("\\n"));
 
@@ -90,7 +88,7 @@ public class PopLocateImages extends PopTable {
         add(label);
 
         row();
-        label = new Label("Locate the images below by clicking each entry.\nThe new images will be copied to the parent folder of the particle file.", skin);
+        label = new Label("Locate the images below by clicking each entry.", skin);
         label.setAlignment(Align.center);
         add(label).padBottom(padding);
 
@@ -136,12 +134,8 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            for (var imagePath : imagePaths) {
-                var fileHandle = newFileHandles.get(imagePath);
-                fileHandle.copyTo(particleFileHandle.parent());
-            }
             if (merge) Utils.mergeParticle(particleFileHandle);
-            else Utils.loadParticle(particleFileHandle);
+            else Utils.loadParticle(particleFileHandle, newFileHandles);
             hide();
         });
 
