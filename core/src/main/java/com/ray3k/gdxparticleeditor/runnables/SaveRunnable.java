@@ -16,8 +16,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 import static com.ray3k.gdxparticleeditor.Core.*;
-import static com.ray3k.gdxparticleeditor.Settings.DEFAULT_PRESUME_FILE_EXTENSION;
-import static com.ray3k.gdxparticleeditor.Settings.NAME_PRESUME_FILE_EXTENSION;
+import static com.ray3k.gdxparticleeditor.Settings.*;
 import static com.ray3k.gdxparticleeditor.Utils.showToast;
 import static com.ray3k.gdxparticleeditor.widgets.panels.EffectEmittersPanel.effectEmittersPanel;
 
@@ -73,9 +72,8 @@ public class SaveRunnable implements Runnable {
                 StreamUtils.closeQuietly(fileWriter);
             }
 
-            for (var fileHandle : fileHandles.values()) {
-                if (fileHandle.parent().equals(openFileFileHandle.parent()))
-                    break;
+            if (preferences.getBoolean(NAME_EXPORT_IMAGES, DEFAULT_EXPORT_IMAGES)) for (var fileHandle : fileHandles.values()) {
+                if (fileHandle.parent().equals(openFileFileHandle.parent())) continue;
                 try {
                     fileHandle.copyTo(openFileFileHandle.parent().child(fileHandle.name()));
                 } catch (GdxRuntimeException e) {

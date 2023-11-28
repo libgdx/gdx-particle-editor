@@ -1,7 +1,8 @@
 # Changelog
 ### Version 1.0.2
+* Added option to disable exporting images with the particle file
 * Fixed stage focus when the locate images dialog
-* Fix issues with mice that send two touch-downs instead of one
+* Fixed issues with mice that send two touch-downs instead of one
 * Minor bugfixes and code cleanup
 ### Version 1.0.1
 * Removed all references to Particle Park Pro
