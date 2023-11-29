@@ -292,7 +292,10 @@ public class Spinner extends Table implements Disableable {
         removeHoldAction();
 
         var repeatedAction = Actions.delay(HOLD_ACTION_REPEAT_DELAY, Actions.run(() -> {
-            if (!Gdx.input.isButtonPressed(Buttons.LEFT)) removeHoldAction();
+            if (!Gdx.input.isButtonPressed(Buttons.LEFT)) {
+                removeHoldAction();
+                return;
+            }
             fire(new ChangeEvent());
             stopNormalPress = true;
             var increment = holdIncrement != null ? holdIncrement : this.increment;

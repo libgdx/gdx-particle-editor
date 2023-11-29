@@ -160,7 +160,7 @@ public class ColorGraph extends Table {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
-                if (createNewNode) {
+                if (createNewNode && colorPickerAction == null) {
                     var nodeData = createNode(x / nodeTable.getWidth(), null, false);
                     fire(new ChangeEvent());
                     fire(new ColorGraphEvent(ADD, nodeData.color));
@@ -181,7 +181,7 @@ public class ColorGraph extends Table {
     }
 
     private NodeData createNode(float value, Color color, boolean stationary) {
-        final var tapCountInterval = .2f;
+        final var tapCountInterval = .3f;
 
         var node = new ImageButton(nodeStyle);
         var nodeData = new NodeData();
@@ -267,6 +267,7 @@ public class ColorGraph extends Table {
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE, nodeData.color));
                                     openColorPicker = true;
+                                    createNewNode = false;
                                 }
 
                                 @Override
@@ -277,6 +278,7 @@ public class ColorGraph extends Table {
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(PREVIEW, nodeData.color));
                                     openColorPicker = true;
+                                    createNewNode = false;
                                 }
 
                                 @Override
@@ -286,6 +288,7 @@ public class ColorGraph extends Table {
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE_CANCEL, nodeData.color));
                                     openColorPicker = true;
+                                    createNewNode = false;
                                 }
                             });
                             cp.addListener(new TableShowHideListener() {
@@ -299,7 +302,7 @@ public class ColorGraph extends Table {
                                     cp = null;
                                 }
                             });
-                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.15f)));
+                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.1f)));
                         })));
                     node.addAction(colorPickerAction);
                 }
