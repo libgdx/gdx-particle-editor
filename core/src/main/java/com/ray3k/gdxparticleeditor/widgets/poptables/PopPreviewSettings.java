@@ -673,7 +673,7 @@ public class PopPreviewSettings extends PopTable {
 
         //Reset
         scrollTable.row();
-        label = new Label("Reset all setting to default", skin, "header");
+        label = new Label("Reset all settings to default", skin, "header");
         scrollTable.add(label).left();
 
         scrollTable.row();

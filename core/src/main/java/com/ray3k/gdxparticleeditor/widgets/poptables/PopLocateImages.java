@@ -2,8 +2,10 @@ package com.ray3k.gdxparticleeditor.widgets.poptables;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cursor.SystemCursor;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -16,20 +18,23 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.ray3k.gdxparticleeditor.FileDialogs;
 import com.ray3k.gdxparticleeditor.Settings;
 import com.ray3k.gdxparticleeditor.Utils;
+import com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel;
 import com.ray3k.stripe.PopTable;
 import regexodus.Pattern;
 import regexodus.REFlags;
 
-import static com.ray3k.gdxparticleeditor.Core.skin;
-import static com.ray3k.gdxparticleeditor.Core.stage;
+import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
+import static com.ray3k.gdxparticleeditor.widgets.panels.EffectEmittersPanel.effectEmittersPanel;
+import static com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel.emitterPropertiesPanel;
 
 public class PopLocateImages extends PopTable {
     private Array<String> imagePaths = new Array<>();
     private ObjectMap<String, FileHandle> newFileHandles = new ObjectMap<>();
     private FileHandle particleFileHandle;
     private boolean merge;
+    private final InputProcessor previousInputProcessor;
 
     public PopLocateImages(FileHandle particleFileHandle, boolean merge) {
         super(skin.get(WindowStyle.class));
@@ -43,7 +48,7 @@ public class PopLocateImages extends PopTable {
         setKeepCenteredInWindow(true);
         setHideOnUnfocus(true);
 
-        var pattern = new Pattern("^.*-\\n");
+        var pattern = new Pattern("^.*-\\r*\\n");
         pattern.setFlags(REFlags.DOTALL);
 
         var text = particleFileHandle.readString(null);
@@ -62,18 +67,16 @@ public class PopLocateImages extends PopTable {
         }
 
         populate();
-        addListener(new TableShowHideListener() {
-            @Override
-            public void tableShown(Event event) {
 
-            }
+        previousInputProcessor = Gdx.input.getInputProcessor();
+        Gdx.input.setInputProcessor(foregroundStage);
+    }
 
-            @Override
-            public void tableHidden(Event event) {
-                Gdx.input.setInputProcessor(stage);
-                Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
-            }
-        });
+    @Override
+    public void hide(Action action) {
+        super.hide(action);
+        if (Gdx.input.getInputProcessor() == foregroundStage) Gdx.input.setInputProcessor(previousInputProcessor);
+        Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
     }
 
     private void populate() {
@@ -88,7 +91,7 @@ public class PopLocateImages extends PopTable {
         add(label);
 
         row();
-        label = new Label("Locate the images below by clicking each entry.\nThe new images will be copied to the parent folder of the particle file.", skin);
+        label = new Label("Locate the images below by clicking each entry.", skin);
         label.setAlignment(Align.center);
         add(label).padBottom(padding);
 
@@ -115,6 +118,7 @@ public class PopLocateImages extends PopTable {
                 var fileHandle = FileDialogs.openDialog("Locate image " + sibling.name(), Settings.getDefaultImagePath(), new String[] {"png","jpg","jpeg"}, "Image files (*.png;*.jpg;*.jpeg)");
                 if (fileHandle != null) {
                     newFileHandles.put(imagePath, fileHandle);
+                    addImagesFromFolder(fileHandle.parent());
                     populate();
                 }
             });
@@ -134,12 +138,14 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            for (var imagePath : imagePaths) {
-                var fileHandle = newFileHandles.get(imagePath);
-                fileHandle.copyTo(particleFileHandle.parent());
+            if (merge) Utils.mergeParticle(particleFileHandle, newFileHandles);
+            else {
+                Utils.loadParticle(particleFileHandle, newFileHandles);
+                selectedEmitter = particleEffect.getEmitters().first();
             }
-            if (merge) Utils.mergeParticle(particleFileHandle);
-            else Utils.loadParticle(particleFileHandle);
+            effectEmittersPanel.populateEmitters();
+            effectEmittersPanel.updateDisableableWidgets();
+            emitterPropertiesPanel.populateScrollTable(null);
             hide();
         });
 
@@ -147,5 +153,14 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, this::hide);
+    }
+
+    private void addImagesFromFolder(FileHandle folder) {
+        for (var imagePath : imagePaths) {
+            if (newFileHandles.containsKey(imagePath)) continue;
+
+            var fileHandle = folder.child(imagePath);
+            if (fileHandle.exists()) newFileHandles.put(imagePath, fileHandle);
+        }
     }
 }

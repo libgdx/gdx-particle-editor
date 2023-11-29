@@ -21,11 +21,13 @@ public class Settings {
     public static final String NAME_PRESUME_FILE_EXTENSION = "Presume file extension";
     public static final String NAME_OPEN_TO_SCREEN = "Open to screen";
     public static final String NAME_SCALE = "Scale";
+    public static final String NAME_EXPORT_IMAGES = "Export images";
     public static final int DEFAULT_MAXIMUM_UNDOS = 100;
     public static final boolean DEFAULT_CHECK_FOR_UPDATES = true;
     public static final boolean DEFAULT_PRESUME_FILE_EXTENSION = true;
     public static final String DEFAULT_OPEN_TO_SCREEN = "Welcome";
     public static final float DEFAULT_SCALE = 1f;
+    public static final boolean DEFAULT_EXPORT_IMAGES = true;
     public static final int[] DEFAULT_UNDO_PRIMARY_KEYBIND = {Keys.CONTROL_LEFT, Keys.Z};
     public static final int[] DEFAULT_REDO_PRIMARY_KEYBIND = {Keys.CONTROL_LEFT, Keys.Y};
     public static final int[] DEFAULT_REDO_SECONDARY_KEYBIND = {Keys.CONTROL_LEFT, Keys.SHIFT_LEFT, Keys.Z};

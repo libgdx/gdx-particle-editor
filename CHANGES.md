@@ -1,4 +1,13 @@
 # Changelog
+### Version 1.0.2
+* Added option to disable exporting images with the particle file
+* Locate Images no longer copies files to the particle effect's parent folder
+* Locate Images only requires you to find the first missing image if the rest of the images are in the same folder
+* Fixed reading files with CRLF end of line sequences. Thanks Obigu!
+* Fixed stage focus when the locate images dialog is shown
+* Fixed issues with mice that send two touch-downs instead of one. Thanks Nate!
+* Fixed incorrect order of emitters in the preview when merging effects
+* Minor bugfixes and code cleanup
 ### Version 1.0.1
 * Removed all references to Particle Park Pro
 * Escape hides relevant dialogs

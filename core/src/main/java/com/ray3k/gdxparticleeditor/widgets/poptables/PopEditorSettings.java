@@ -152,6 +152,20 @@ public class PopEditorSettings extends PopTable {
             preferences.flush();
         });
 
+        checkBoxTable.row();
+        var exportImagesCheckBox = new CheckBox("Export images with saved file", skin);
+        exportImagesCheckBox.setChecked(
+            preferences.getBoolean(NAME_EXPORT_IMAGES, DEFAULT_EXPORT_IMAGES));
+        checkBoxTable.add(exportImagesCheckBox);
+        addHandListener(exportImagesCheckBox);
+        addTooltip(exportImagesCheckBox,
+            "Whether or not the app copies the particle images to the directory of the saved particle file", Align.top, Align.top,
+            tooltipBottomArrowStyle);
+        onChange(exportImagesCheckBox, () -> {
+            preferences.putBoolean(NAME_EXPORT_IMAGES, exportImagesCheckBox.isChecked());
+            preferences.flush();
+        });
+
         //sliders
         settingsTable.row();
         var sliderTable = new Table();
@@ -417,6 +431,7 @@ public class PopEditorSettings extends PopTable {
         preferences.putString(NAME_OPEN_TO_SCREEN, DEFAULT_OPEN_TO_SCREEN);
         preferences.putBoolean(NAME_CHECK_FOR_UPDATES, DEFAULT_CHECK_FOR_UPDATES);
         preferences.putBoolean(NAME_PRESUME_FILE_EXTENSION, DEFAULT_PRESUME_FILE_EXTENSION);
+        preferences.putBoolean(NAME_EXPORT_IMAGES, DEFAULT_EXPORT_IMAGES);
         preferences.flush();
         populate();
     }

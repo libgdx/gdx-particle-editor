@@ -52,6 +52,7 @@ public class ColorGraph extends Table {
     private Action colorPickerAction;
     private Table colorTable;
     private Table nodeTable;
+    private PopColorPicker cp;
 
     public ColorGraph(ColorGraphStyle style) {
         nodeStartStyle = new ImageButtonStyle();
@@ -159,7 +160,7 @@ public class ColorGraph extends Table {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
-                if (createNewNode) {
+                if (createNewNode && colorPickerAction == null) {
                     var nodeData = createNode(x / nodeTable.getWidth(), null, false);
                     fire(new ChangeEvent());
                     fire(new ColorGraphEvent(ADD, nodeData.color));
@@ -171,11 +172,16 @@ public class ColorGraph extends Table {
                 createNewNode = false;
                 openColorPicker = false;
             }
+
+            @Override
+            public void dragStop(InputEvent event, float x, float y, int pointer) {
+                openColorPicker = true;
+            }
         };
     }
 
     private NodeData createNode(float value, Color color, boolean stationary) {
-        final var tapCountInterval = .2f;
+        final var tapCountInterval = .3f;
 
         var node = new ImageButton(nodeStyle);
         var nodeData = new NodeData();
@@ -238,13 +244,15 @@ public class ColorGraph extends Table {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (getTapCount() == 1 && event.getButton() == Buttons.LEFT && openColorPicker) {
+                    createNewNode = false;
                     openColorPicker = false;
                     colorPickerAction = Actions.delay(tapCountInterval,
                         Actions.run(() -> Gdx.app.postRunnable(() -> {
                             colorPickerAction = null;
+                            if (cp != null) return;
                             allowDrag = false;
                             Gdx.input.setInputProcessor(foregroundStage);
-                            var cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
+                            cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
                             cp.setHideOnUnfocus(true);
                             cp.setButtonListener(handListener);
                             cp.setTextFieldListener(ibeamListener);
@@ -258,6 +266,8 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE, nodeData.color));
+                                    openColorPicker = true;
+                                    createNewNode = false;
                                 }
 
                                 @Override
@@ -267,6 +277,8 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(PREVIEW, nodeData.color));
+                                    openColorPicker = true;
+                                    createNewNode = false;
                                 }
 
                                 @Override
@@ -275,20 +287,22 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE_CANCEL, nodeData.color));
+                                    openColorPicker = true;
+                                    createNewNode = false;
                                 }
                             });
-                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.15f)));
                             cp.addListener(new TableShowHideListener() {
                                 @Override
                                 public void tableShown(Event event) {
-
                                 }
 
                                 @Override
                                 public void tableHidden(Event event) {
                                     Gdx.input.setInputProcessor(stage);
+                                    cp = null;
                                 }
                             });
+                            cp.show(foregroundStage, sequence(alpha(0), fadeIn(.1f)));
                         })));
                     node.addAction(colorPickerAction);
                 }
@@ -329,7 +343,7 @@ public class ColorGraph extends Table {
                 }
             }
         };
-        dragListener.setTapSquareSize(5);
+//        dragListener.setTapSquareSize(5);
         node.addListener(dragListener);
         return nodeData;
     }
