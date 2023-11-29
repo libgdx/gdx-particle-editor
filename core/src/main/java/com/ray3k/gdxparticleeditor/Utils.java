@@ -305,15 +305,10 @@ public class Utils {
         }
 
         //copy the new emitters and clear the particle effect
-        var newEmitters = new Array<>(particleEffect.getEmitters());
-        particleEffect.getEmitters().clear();
-
         for (var oldActiveEmitter : oldActiveEmitters) {
             activeEmitters.put(oldActiveEmitter.key, oldActiveEmitter.value);
             if (oldActiveEmitter.value) particleEffect.getEmitters().add(oldActiveEmitter.key);
         }
-
-        particleEffect.getEmitters().addAll(newEmitters);
 
         effectEmittersPanel.populateEmitters();
         effectEmittersPanel.updateDisableableWidgets();
