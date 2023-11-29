@@ -317,7 +317,9 @@ public class ColorGraph extends Table {
                         fire(new ColorGraphEvent(REMOVE, nodeData.color));
                     } else {
                         node.removeAction(colorPickerAction);
+                        openColorPicker = true;
                     }
+                    colorPickerAction = null;
                 }
             }
         };

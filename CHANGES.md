@@ -7,6 +7,7 @@
 * Fixed stage focus when the locate images dialog is shown
 * Fixed issues with mice that send two touch-downs instead of one. Thanks Nate!
 * Fixed incorrect order of emitters in the preview when merging effects
+* Fixed unable to add new nodes to the ColorGraph
 * Minor bugfixes and code cleanup
 ### Version 1.0.1
 * Removed all references to Particle Park Pro
