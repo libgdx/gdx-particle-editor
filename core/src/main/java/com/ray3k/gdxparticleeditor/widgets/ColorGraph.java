@@ -266,6 +266,7 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE, nodeData.color));
+                                    openColorPicker = true;
                                 }
 
                                 @Override
@@ -275,6 +276,7 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(PREVIEW, nodeData.color));
+                                    openColorPicker = true;
                                 }
 
                                 @Override
@@ -283,6 +285,7 @@ public class ColorGraph extends Table {
                                     updateColors();
                                     fire(new ChangeEvent());
                                     fire(new ColorGraphEvent(CHANGE_CANCEL, nodeData.color));
+                                    openColorPicker = true;
                                 }
                             });
                             cp.addListener(new TableShowHideListener() {
@@ -337,7 +340,7 @@ public class ColorGraph extends Table {
                 }
             }
         };
-        dragListener.setTapSquareSize(5);
+//        dragListener.setTapSquareSize(5);
         node.addListener(dragListener);
         return nodeData;
     }
