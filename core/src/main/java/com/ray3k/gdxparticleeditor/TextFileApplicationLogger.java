@@ -29,6 +29,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
 
 import java.io.PrintStream;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * A logger that saves errors and messages to the provided logFilehandle.
@@ -42,14 +44,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void log(String tag, String message) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.out.println(tag + ": " + message);
     }
 
     @Override
     public void log(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.out.println(tag + ": " + message);
@@ -58,14 +60,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void error(String tag, String message) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.err.println(tag + ": " + message);
     }
 
     @Override
     public void error(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.err.println(tag + ": " + message);
@@ -74,14 +76,14 @@ public class TextFileApplicationLogger implements ApplicationLogger {
 
     @Override
     public void debug(String tag, String message) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
 
         System.out.println(tag + ": " + message);
     }
 
     @Override
     public void debug(String tag, String message, Throwable exception) {
-        logFileHandle.writeString("\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
+        logFileHandle.writeString("\n" + new Timestamp(System.currentTimeMillis()) + "\n" + retrieveSystemDetails() + tag + ": " + message + "\n", true);
         printException(exception);
 
         System.out.println(tag + ": " + message);

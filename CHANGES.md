@@ -1,5 +1,6 @@
 # Changelog
 ### Version 1.0.3
+* Added date and time to log errors
 * Fixed incorrect image paths when loading from a CRLF file. Thanks Obigu!
 * Fixed loading old particle effect files. Thanks Obigu!
 * Fixed error messages not being able to be dismissed or interacted with after an image path error
