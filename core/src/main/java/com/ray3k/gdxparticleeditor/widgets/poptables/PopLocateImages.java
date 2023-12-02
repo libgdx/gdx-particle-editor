@@ -60,6 +60,7 @@ public class PopLocateImages extends PopTable {
         text = matcher.replaceAll("");
 
         imagePaths.addAll(text.split("\\n"));
+        imagePaths.addAll(text.split("[\\n\\r]+"));
 
         for (var imagePath : imagePaths) {
             var sibling = particleFileHandle.sibling(imagePath);
