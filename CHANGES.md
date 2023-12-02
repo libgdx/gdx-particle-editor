@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.3
+* 
 ### Version 1.0.2
 * Added option to disable exporting images with the particle file
 * Locate Images no longer copies files to the particle effect's parent folder
