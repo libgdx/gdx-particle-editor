@@ -32,6 +32,7 @@ import com.ray3k.gdxparticleeditor.shortcuts.ShortcutManager;
 import com.ray3k.gdxparticleeditor.undo.UndoManager;
 import com.ray3k.gdxparticleeditor.widgets.Toast;
 import com.ray3k.gdxparticleeditor.widgets.poptables.PopConfirmLoad;
+import com.ray3k.gdxparticleeditor.widgets.poptables.PopError;
 import com.ray3k.gdxparticleeditor.widgets.poptables.PopImageError;
 import com.ray3k.gdxparticleeditor.widgets.tables.ClassicTable;
 import com.ray3k.gdxparticleeditor.widgets.tables.WizardTable;
@@ -119,10 +120,10 @@ public class Utils {
     }
 
     public static boolean loadParticle(FileHandle fileHandle) {
-        return loadParticle(fileHandle, null);
+        return loadParticle(fileHandle, null, true);
     }
 
-    public static boolean loadParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap) {
+    public static boolean loadParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap, boolean showLocateImagesPop) {
         var newParticleEffect = new ParticleEffect();
         try {
             if (fileHandle.type() != FileType.Internal) {
@@ -158,8 +159,15 @@ public class Utils {
         } catch (Exception e) {
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
-            var pop = new PopImageError("Error loading particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, false);
-            pop.show(foregroundStage);
+            if (showLocateImagesPop) {
+                var pop = new PopImageError(
+                    "Error loading particle file. Ensure that all associated images are saved locally.", e.getMessage(),
+                    fileHandle, false);
+                pop.show(foregroundStage);
+            } else {
+                var pop = new PopError("Error loading particle file. Ensure that all associated images are saved locally.", e.getMessage());
+                pop.show(foregroundStage);
+            }
 
             Gdx.app.error(Core.class.getName(), "Error loading particle file.", e);
             return false;
@@ -238,10 +246,10 @@ public class Utils {
     }
 
     public static boolean mergeParticle(FileHandle fileHandle) {
-        return mergeParticle(fileHandle, null);
+        return mergeParticle(fileHandle, null, true);
     }
 
-    public static boolean mergeParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap) {
+    public static boolean mergeParticle(FileHandle fileHandle, ObjectMap<String, FileHandle> imageFileMap, boolean showLocateImagesPop) {
         var newParticleEffect = new ParticleEffect();
         var oldActiveEmitters = new OrderedMap<ParticleEmitter, Boolean>();
         try {
@@ -281,8 +289,15 @@ public class Utils {
         } catch (Exception e) {
             Gdx.graphics.setSystemCursor(SystemCursor.Arrow);
 
-            var pop = new PopImageError("Error merging particle file. Ensure that all associated images are saved locally.", e.getMessage(), fileHandle, true);
-            pop.show(foregroundStage);
+            if (showLocateImagesPop) {
+                var pop = new PopImageError(
+                    "Error merging particle file. Ensure that all associated images are saved locally.", e.getMessage(),
+                    fileHandle, true);
+                pop.show(foregroundStage);
+            } else {
+                var pop = new PopError("Error merging particle file. Ensure that all associated images are saved locally.", e.getMessage());
+                pop.show(foregroundStage);
+            }
 
             Gdx.app.error(Core.class.getName(), "Error merging particle file.", e);
             return false;

@@ -1,7 +1,10 @@
 package com.ray3k.gdxparticleeditor.widgets.poptables;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -13,6 +16,7 @@ import com.ray3k.stripe.PopTable;
 
 import java.io.IOException;
 
+import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
 import static com.ray3k.gdxparticleeditor.Core.skin;
 import static com.ray3k.gdxparticleeditor.Settings.logFile;
 
@@ -24,6 +28,7 @@ import static com.ray3k.gdxparticleeditor.Settings.logFile;
 public class PopError extends PopTable {
     private String message;
     private String error;
+    private final InputProcessor previousInputProcessor;
 
     public PopError(String message, String error) {
         super(skin.get(WindowStyle.class));
@@ -35,6 +40,14 @@ public class PopError extends PopTable {
         this.error = error;
 
         populate();
+        previousInputProcessor = Gdx.input.getInputProcessor();
+        Gdx.input.setInputProcessor(foregroundStage);
+    }
+
+    @Override
+    public void hide(Action action) {
+        super.hide(action);
+        if (Gdx.input.getInputProcessor() == foregroundStage) Gdx.input.setInputProcessor(previousInputProcessor);
     }
 
     private void populate() {

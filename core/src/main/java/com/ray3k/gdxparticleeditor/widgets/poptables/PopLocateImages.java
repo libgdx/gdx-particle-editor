@@ -59,7 +59,6 @@ public class PopLocateImages extends PopTable {
         matcher = pattern.matcher(text);
         text = matcher.replaceAll("");
 
-        imagePaths.addAll(text.split("\\n"));
         imagePaths.addAll(text.split("[\\n\\r]+"));
 
         for (var imagePath : imagePaths) {
@@ -139,15 +138,15 @@ public class PopLocateImages extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            if (merge) Utils.mergeParticle(particleFileHandle, newFileHandles);
+            hide();
+            if (merge) Utils.mergeParticle(particleFileHandle, newFileHandles, false);
             else {
-                Utils.loadParticle(particleFileHandle, newFileHandles);
+                Utils.loadParticle(particleFileHandle, newFileHandles, false);
                 selectedEmitter = particleEffect.getEmitters().first();
             }
             effectEmittersPanel.populateEmitters();
             effectEmittersPanel.updateDisableableWidgets();
             emitterPropertiesPanel.populateScrollTable(null);
-            hide();
         });
 
         textButton = new TextButton("Cancel", skin);

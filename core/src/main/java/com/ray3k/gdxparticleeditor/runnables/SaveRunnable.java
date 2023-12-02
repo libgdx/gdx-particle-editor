@@ -53,17 +53,6 @@ public class SaveRunnable implements Runnable {
             } catch (IOException e) {
                 var error = "Error saving particle file.";
                 var pop = new PopError(error, e.getMessage());
-                pop.addListener(new TableShowHideListener() {
-                    @Override
-                    public void tableShown(Event event) {
-                        Gdx.input.setInputProcessor(foregroundStage);
-                    }
-
-                    @Override
-                    public void tableHidden(Event event) {
-                        Gdx.input.setInputProcessor(stage);
-                    }
-                });
                 pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
@@ -79,17 +68,6 @@ public class SaveRunnable implements Runnable {
                 } catch (GdxRuntimeException e) {
                     var error = "Error copying files to save location.";
                     var pop = new PopError(error, e.getMessage());
-                    pop.addListener(new TableShowHideListener() {
-                        @Override
-                        public void tableShown(Event event) {
-                            Gdx.input.setInputProcessor(foregroundStage);
-                        }
-
-                        @Override
-                        public void tableHidden(Event event) {
-                            Gdx.input.setInputProcessor(stage);
-                        }
-                    });
                     pop.show(foregroundStage);
 
                     Gdx.app.error(Core.class.getName(), error, e);

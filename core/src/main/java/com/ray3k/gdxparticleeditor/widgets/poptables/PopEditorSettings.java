@@ -248,17 +248,6 @@ public class PopEditorSettings extends PopTable {
             } catch (IOException e) {
                 var error = "Error opening preferences directory.";
                 var pop = new PopError(error, e.getMessage());
-                pop.addListener(new TableShowHideListener() {
-                    @Override
-                    public void tableShown(Event event) {
-                        Gdx.input.setInputProcessor(foregroundStage);
-                    }
-
-                    @Override
-                    public void tableHidden(Event event) {
-                        Gdx.input.setInputProcessor(stage);
-                    }
-                });
                 pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
@@ -277,17 +266,6 @@ public class PopEditorSettings extends PopTable {
             } catch (IOException e) {
                 var error = "Error opening log directory.";
                 var pop = new PopError(error, e.getMessage());
-                pop.addListener(new TableShowHideListener() {
-                    @Override
-                    public void tableShown(Event event) {
-                        Gdx.input.setInputProcessor(foregroundStage);
-                    }
-
-                    @Override
-                    public void tableHidden(Event event) {
-                        Gdx.input.setInputProcessor(stage);
-                    }
-                });
                 pop.show(foregroundStage);
 
                 Gdx.app.error(Core.class.getName(), error, e);
