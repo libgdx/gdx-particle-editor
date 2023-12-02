@@ -1,6 +1,7 @@
 # Changelog
 ### Version 1.0.3
 * Fixed incorrect image paths when loading from a CRLF file. Thanks Obigu!
+* Fixed loading old particle effect files. Thanks Obigu!
 * Fixed error messages not being able to be dismissed or interacted with after an image path error
 ### Version 1.0.2
 * Added option to disable exporting images with the particle file

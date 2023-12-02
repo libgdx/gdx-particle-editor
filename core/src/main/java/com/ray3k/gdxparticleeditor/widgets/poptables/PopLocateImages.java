@@ -23,6 +23,8 @@ import com.ray3k.stripe.PopTable;
 import regexodus.Pattern;
 import regexodus.REFlags;
 
+import java.io.File;
+
 import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
@@ -60,6 +62,11 @@ public class PopLocateImages extends PopTable {
         text = matcher.replaceAll("");
 
         imagePaths.addAll(text.split("[\\n\\r]+"));
+
+        for (int i = 0; i < imagePaths.size; i++) {
+            var imagePath = new File(imagePaths.get(i).replace('\\', '/')).getName();
+            imagePaths.set(i, imagePath);
+        }
 
         for (var imagePath : imagePaths) {
             var sibling = particleFileHandle.sibling(imagePath);
