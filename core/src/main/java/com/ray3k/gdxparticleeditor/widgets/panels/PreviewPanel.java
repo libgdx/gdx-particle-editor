@@ -88,7 +88,7 @@ public class PreviewPanel extends Panel {
         button = new Button(skin, "zoom-out");
         table.add(button);
         addHandListener(button);
-        addTooltip(button, "Zoom in.", Align.top, Align.top, tooltipBottomArrowStyle);
+        addTooltip(button, "Zoom out", Align.top, Align.top, tooltipBottomArrowStyle);
         onChange(button, () -> {
             zoomLevelIndex = MathUtils.clamp(zoomLevelIndex + 1, 0, zoomLevels.size - 1);
             previewViewport.setUnitsPerPixel(zoomLevels.get(zoomLevelIndex) / getPixelsPerMeter());
@@ -97,7 +97,7 @@ public class PreviewPanel extends Panel {
         button = new Button(skin, "zoom-in");
         table.add(button);
         addHandListener(button);
-        addTooltip(button, "Zoom out.", Align.top, Align.top, tooltipBottomArrowStyle);
+        addTooltip(button, "Zoom in", Align.top, Align.top, tooltipBottomArrowStyle);
         onChange(button, () -> {
             zoomLevelIndex = MathUtils.clamp(zoomLevelIndex - 1, 0, zoomLevels.size - 1);
             previewViewport.setUnitsPerPixel(zoomLevels.get(zoomLevelIndex) / getPixelsPerMeter());
