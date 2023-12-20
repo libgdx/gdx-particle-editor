@@ -9,12 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Align;
+import com.ray3k.gdxparticleeditor.Listeners;
 import com.ray3k.gdxparticleeditor.runnables.SaveAsRunnable;
 import com.ray3k.gdxparticleeditor.runnables.SaveRunnable;
 import com.ray3k.stripe.PopTable;
 
 import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
 import static com.ray3k.gdxparticleeditor.Core.skin;
+import static com.ray3k.gdxparticleeditor.Listeners.*;
 import static com.ray3k.gdxparticleeditor.Listeners.addHandListener;
 import static com.ray3k.gdxparticleeditor.Listeners.onChange;
 
@@ -38,7 +40,7 @@ public class PopConfirmClose extends PopTable {
         addListener(new TableShowHideListener() {
             @Override
             public void tableShown(Event event) {
-
+                hideAllTooltips();
             }
 
             @Override

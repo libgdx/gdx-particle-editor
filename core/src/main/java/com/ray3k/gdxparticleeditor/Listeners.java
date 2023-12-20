@@ -261,8 +261,27 @@ public class Listeners {
 
             }
         };
+
+        popTable.addListener(new TableShowHideListener() {
+            @Override
+            public void tableShown(Event event) {
+                tooltips.add(popTable);
+            }
+
+            @Override
+            public void tableHidden(Event event) {
+                tooltips.removeValue(popTable, true);
+            }
+        });
+
         actor.addListener(inputListener);
         return popTable;
+    }
+
+    public static void hideAllTooltips() {
+        for (var tooltip : tooltips) {
+            tooltip.hide();
+        }
     }
 
     public static void addInfiniteSlider(Spinner valueSpinner, float increment, float range, boolean adjustByPPM, ChangeListener changeListener) {

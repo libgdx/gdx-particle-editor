@@ -32,6 +32,7 @@ import com.ray3k.gdxparticleeditor.widgets.Toast;
 import com.ray3k.gdxparticleeditor.widgets.tables.ClassicTable;
 import com.ray3k.gdxparticleeditor.widgets.tables.WelcomeTable;
 import com.ray3k.gdxparticleeditor.widgets.tables.WizardTable;
+import com.ray3k.stripe.PopTable;
 import com.ray3k.stripe.ViewportWidget;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
@@ -270,6 +271,11 @@ public class Core extends ApplicationAdapter {
      */
     public static Array<Toast> toastQueue;
 
+    /**
+     * The list of all open tooltips that is automatically updated as tooltips are opened and closed.
+     */
+    public static Array<PopTable> tooltips;
+
     @Override
     public void create() {
         sizeWindowToScreenHeight(950/1080f, 1000/950f);
@@ -318,6 +324,8 @@ public class Core extends ApplicationAdapter {
         particlePreview = new ParticlePreview();
 
         toastQueue = new Array<>();
+
+        tooltips = new Array<>();
 
         activeEmitters = new OrderedMap<>();
         loadParticle(Gdx.files.internal("flame.p"));
