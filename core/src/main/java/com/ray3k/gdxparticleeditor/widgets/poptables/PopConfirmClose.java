@@ -33,6 +33,8 @@ public class PopConfirmClose extends PopTable {
 
         setHideOnUnfocus(true);
         key(Keys.ESCAPE, this::hide);
+        key(Keys.ENTER, this::save);
+        key(Keys.NUMPAD_ENTER, this::save);
 
         previousInputProcessor = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(foregroundStage);
@@ -74,15 +76,7 @@ public class PopConfirmClose extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            hide();
-
-            var saveFirstRunnable = new SaveRunnable();
-            var saveAsFirstRunnable = new SaveAsRunnable();
-
-            saveFirstRunnable.setSaveAsRunnable(saveAsFirstRunnable);
-            saveAsFirstRunnable.setSaveRunnable(saveFirstRunnable);
-            saveFirstRunnable.setOnCompletionRunnable(() -> Gdx.app.exit());
-            saveFirstRunnable.run();
+            save();
         });
 
         textButton = new TextButton("Close without saving", skin, "highlighted-red");
@@ -96,5 +90,17 @@ public class PopConfirmClose extends PopTable {
         onChange(textButton, () -> {
             hide();
         });
+    }
+
+    private void save() {
+        hide();
+
+        var saveFirstRunnable = new SaveRunnable();
+        var saveAsFirstRunnable = new SaveAsRunnable();
+
+        saveFirstRunnable.setSaveAsRunnable(saveAsFirstRunnable);
+        saveAsFirstRunnable.setSaveRunnable(saveFirstRunnable);
+        saveFirstRunnable.setOnCompletionRunnable(() -> Gdx.app.exit());
+        saveFirstRunnable.run();
     }
 }

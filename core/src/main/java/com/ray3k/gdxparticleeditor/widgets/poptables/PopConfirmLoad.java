@@ -34,6 +34,8 @@ public class PopConfirmLoad extends PopTable {
 
         setHideOnUnfocus(true);
         key(Keys.ESCAPE, this::hide);
+        key(Keys.ENTER, this::save);
+        key(Keys.NUMPAD_ENTER, this::save);
 
         this.runnableSave = runnableSave;
         this.runnableDiscard = runnableDiscard;
@@ -78,9 +80,7 @@ public class PopConfirmLoad extends PopTable {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            hide();
-            Gdx.input.setInputProcessor(previousInputProcessor);
-            runnableSave.run();
+            save();
         });
 
         textButton = new TextButton("Discard changes", skin, "highlighted-red");
@@ -99,5 +99,11 @@ public class PopConfirmLoad extends PopTable {
             hide();
             Gdx.input.setInputProcessor(previousInputProcessor);
         });
+    }
+
+    private void save() {
+        hide();
+        Gdx.input.setInputProcessor(previousInputProcessor);
+        runnableSave.run();
     }
 }
