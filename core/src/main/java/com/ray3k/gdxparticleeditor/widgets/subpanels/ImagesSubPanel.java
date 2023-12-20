@@ -214,7 +214,7 @@ public class ImagesSubPanel extends Panel {
             var index = list.getSelectedIndex();
 
             var path = list.getSelected().toString();
-            UndoManager.add(new ImagesRemoveUndoable(selectedEmitter, path, fileHandles.get(path), sprites.get(path), "Remove Image"));
+            UndoManager.add(new ImagesRemoveUndoable(selectedEmitter, path, fileHandles.get(path), selectedEmitter.getSprites().get(index), "Remove Image"));
 
             list.clearChildren();
             list.addAllTexts(paths);

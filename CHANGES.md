@@ -3,6 +3,7 @@
 * Fixed tooltips for "zoom in" and "zoom out"
 * Fixed tooltip for "Aligned" option
 * Fixed being unable to right-click the preview panel over the statistics label
+* Fixed unable to delete the correct sprite if particles have the same file name
 ### Version 1.0.3
 * Added date and time to log errors
 * Fixed incorrect image paths when loading from a CRLF file. Thanks Obigu!
