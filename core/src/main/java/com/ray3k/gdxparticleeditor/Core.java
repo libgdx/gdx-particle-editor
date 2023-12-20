@@ -105,13 +105,25 @@ public class Core extends ApplicationAdapter {
     private final Color bgColor = new Color();
 
     public static ShapeDrawer shapeDrawer;
+
+    /**
+     * The widget used to contain the preview viewport within the layout of the currently active screen.
+     */
     public static ViewportWidget viewportWidget;
 
     /**
      * The object that handles the drawing of the ParticleEffect preview.
      */
     public static ParticlePreview particlePreview;
+
+    /**
+     * The persistent preferences for the app. This includes keyboard shortcuts, scale, save options, and more.
+     */
     public static Preferences preferences;
+
+    /**
+     * The particle effect used for preview and for saving to file.
+     */
     public static ParticleEffect particleEffect;
 
     /**
