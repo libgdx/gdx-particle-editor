@@ -261,5 +261,6 @@ public class PreviewPanel extends Panel {
         statsLabel.addAction(Actions.delay(1f, Actions.run(() -> statsLabel.setLayoutEnabled(true))));
         statsLabel.setVisible(isStatisticsEnabled());
         statsLabel.setColor(getStatisticsColor());
+        statsLabel.setTouchable(Touchable.disabled);
     }
 }
