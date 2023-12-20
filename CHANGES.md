@@ -1,6 +1,7 @@
 # Changelog
 ### Version 1.0.4
-* Fix tooltips for zoom in and zoom out
+* Fix tooltips for "zoom in" and "zoom out"
+* Fix tooltip for "Aligned" option
 ### Version 1.0.3
 * Added date and time to log errors
 * Fixed incorrect image paths when loading from a CRLF file. Thanks Obigu!
