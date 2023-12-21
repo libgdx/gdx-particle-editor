@@ -626,6 +626,17 @@ public class PopPreviewSettings extends PopTable {
         textButton = new TextButton("Set", skin);
         subtable.add(textButton);
         addHandListener(textButton);
+        onChange(textButton, () -> {
+            var fileHandle = FileDialogs.openDialog("Open shader", getDefaultShaderPath(), null, null);
+
+            if (fileHandle != null) {
+                defaultFileName = fileHandle.name();
+                Settings.setDefaultShaderPath(fileHandle.parent());
+
+                vertShaderFile = fileHandle;
+                Utils.initShaderProgram();
+            }
+        });
 
         //Frag. Shader
         subtable = new Table();
@@ -649,11 +660,11 @@ public class PopPreviewSettings extends PopTable {
         subtable.add(textButton);
         addHandListener(textButton);
         onChange(textButton, () -> {
-            var fileHandle = FileDialogs.openDialog("Open shader", getDefaultSavePath(), null, null);
+            var fileHandle = FileDialogs.openDialog("Open shader", getDefaultShaderPath(), null, null);
 
             if (fileHandle != null) {
                 defaultFileName = fileHandle.name();
-                Settings.setDefaultSavePath(fileHandle.parent());
+                Settings.setDefaultShaderPath(fileHandle.parent());
 
                 fragShaderFile = fileHandle;
                 Utils.initShaderProgram();
