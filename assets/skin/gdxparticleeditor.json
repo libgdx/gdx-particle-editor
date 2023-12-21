@@ -2175,6 +2175,10 @@
 	"confirm-scale": {
 		"font": "bold",
 		"background": "stage-background-dark"
+	},
+	"textfield": {
+		"font": "font-black",
+		"background": "textfield-up-10"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
