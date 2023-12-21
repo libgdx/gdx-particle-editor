@@ -21,6 +21,7 @@ import com.ray3k.gdxparticleeditor.undo.undoables.RenameEmitterUndoable;
 import com.ray3k.gdxparticleeditor.widgets.CollapsibleGroup;
 import com.ray3k.gdxparticleeditor.widgets.EditableLabel;
 import com.ray3k.gdxparticleeditor.widgets.Panel;
+import com.ray3k.gdxparticleeditor.widgets.poptables.PopExport;
 import com.ray3k.gdxparticleeditor.widgets.poptables.PopTemplate;
 import com.ray3k.stripe.DraggableList;
 import com.ray3k.stripe.DraggableList.DraggableListListener;
@@ -237,6 +238,16 @@ public class EffectEmittersPanel extends Panel {
         table.add(textButton);
         addHandListener(textButton);
         onChange(textButton, saveAsRunnable);
+
+        //Export
+        table.row();
+        textButton = new TextButton("Export", skin);
+        table.add(textButton);
+        addHandListener(textButton);
+        onChange(textButton, () -> {
+            var pop = new PopExport();
+            pop.show(foregroundStage);
+        });
 
         //Open
         table.row();

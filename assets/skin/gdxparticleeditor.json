@@ -2264,7 +2264,8 @@
 		"font": "font",
 		"up": "button-highlighted-up-10",
 		"down": "button-highlighted-down-10",
-		"over": "button-highlighted-over-10"
+		"over": "button-highlighted-over-10",
+		"disabled": "button-normal-disabled-10"
 	},
 	"small": {
 		"font": "font",

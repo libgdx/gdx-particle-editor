@@ -1,5 +1,6 @@
 # Changelog
 ### Version 1.0.4
+* Added "Export" option to allow users to save a copy of their particle file
 * Fixed tooltips for "zoom in" and "zoom out"
 * Fixed tooltip for "Aligned" option
 * Fixed being unable to right-click the preview panel over the statistics label

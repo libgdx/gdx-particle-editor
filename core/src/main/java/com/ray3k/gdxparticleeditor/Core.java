@@ -29,6 +29,7 @@ import com.ray3k.gdxparticleeditor.shortcuts.KeyMap;
 import com.ray3k.gdxparticleeditor.shortcuts.Shortcut;
 import com.ray3k.gdxparticleeditor.shortcuts.ShortcutManager;
 import com.ray3k.gdxparticleeditor.widgets.Toast;
+import com.ray3k.gdxparticleeditor.widgets.poptables.PopExport;
 import com.ray3k.gdxparticleeditor.widgets.tables.ClassicTable;
 import com.ray3k.gdxparticleeditor.widgets.tables.WelcomeTable;
 import com.ray3k.gdxparticleeditor.widgets.tables.WizardTable;
@@ -396,6 +397,10 @@ public class Core extends ApplicationAdapter {
         shortcuts.add(createShortcut("Redo", "Keyboard shortcut for the Redo action.", DEFAULT_REDO_PRIMARY_KEYBIND, DEFAULT_REDO_SECONDARY_KEYBIND, GLOBAL_SCOPE, new RedoShortcutRunnable()));
         shortcuts.add(createShortcut("Save", "Keyboard shortcut for the Save action.", DEFAULT_SAVE_PRIMARY_KEYBIND, null, GLOBAL_SCOPE, saveRunnable));
         shortcuts.add(createShortcut("Save As", "Keyboard shortcut for the Save As action.", DEFAULT_SAVE_AS_PRIMARY_KEYBIND, null, GLOBAL_SCOPE, saveAsRunnable));
+        shortcuts.add(createShortcut("Export", "Keyboard shortcut for the Export action.", DEFAULT_EXPORT_PRIMARY_KEYBIND, null, GLOBAL_SCOPE, () -> {
+            var pop = new PopExport();
+            pop.show(foregroundStage);
+        }));
         shortcuts.add(createShortcut("Open", "Keyboard shortcut for the Open action.", DEFAULT_OPEN_PRIMARY_KEYBIND, null, GLOBAL_SCOPE, openRunnable));
         shortcuts.add(createShortcut("Switch Mode", "Keyboard shortcut to switch the visible mode.", DEFAULT_SWITCH_MODE_KEYBIND, null, GLOBAL_SCOPE, switchModeRunnable));
 
