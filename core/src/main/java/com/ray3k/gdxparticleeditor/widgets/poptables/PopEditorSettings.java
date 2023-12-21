@@ -341,7 +341,7 @@ public class PopEditorSettings extends PopTable {
         primaryTextField.setDisabled(true);
         shortcutTable.add(primaryTextField);
         textFields.add(primaryTextField);
-        addHandListener(primaryTextField);
+        addHandListenerIgnoreDisabled(primaryTextField);
         addTooltip(primaryTextField, shortcut.getDescription(), Align.top, Align.top, tooltipBottomArrowStyle);
         onClick(primaryTextField, () -> showKeyBindPop(primaryTextField, shortcut, foregroundStage, true));
 
@@ -350,7 +350,7 @@ public class PopEditorSettings extends PopTable {
         secondaryTextField.setDisabled(true);
         shortcutTable.add(secondaryTextField);
         textFields.add(secondaryTextField);
-        addHandListener(secondaryTextField);
+        addHandListenerIgnoreDisabled(secondaryTextField);
         addTooltip(secondaryTextField, shortcut.getDescription(), Align.top, Align.top, tooltipBottomArrowStyle);
         onClick(secondaryTextField, () -> showKeyBindPop(secondaryTextField, shortcut, foregroundStage, false));
     }

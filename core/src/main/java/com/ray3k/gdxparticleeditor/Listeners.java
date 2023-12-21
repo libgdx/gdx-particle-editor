@@ -42,6 +42,7 @@ import static com.ray3k.gdxparticleeditor.widgets.subpanels.ImagesSubPanel.image
  */
 public class Listeners {
     public static SystemCursorListener handListener;
+    public static SystemCursorListener handListenerIgnoreDisabled;
     public static SystemCursorListener ibeamListener;
     public static SystemCursorListener horizontalResizeListener;
     public static SystemCursorListener verticalResizeListener;
@@ -57,6 +58,8 @@ public class Listeners {
 
     public static void initializeListeners() {
         handListener = new SystemCursorListener(SystemCursor.Hand);
+        handListenerIgnoreDisabled = new SystemCursorListener(SystemCursor.Hand);
+        handListenerIgnoreDisabled.ignoreDisabled = true;
         ibeamListener = new SystemCursorListener(SystemCursor.Ibeam);
         neswResizeListener = new SystemCursorListener(SystemCursor.NESWResize);
         nwseResizeListener = new SystemCursorListener(SystemCursor.NWSEResize);
@@ -119,6 +122,10 @@ public class Listeners {
 
     public static void addHandListener(Actor actor) {
         actor.addListener(handListener);
+    }
+
+    public static void addHandListenerIgnoreDisabled(Actor actor) {
+        actor.addListener(handListenerIgnoreDisabled);
     }
 
     public static void addIbeamListener(Actor actor) {

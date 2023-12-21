@@ -36,6 +36,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
  * @author Raymond
  */
 public class SystemCursorListener extends DragListener {
+    public boolean ignoreDisabled;
     private boolean draggingCursor;
     private SystemCursor systemCursor;
 
@@ -53,7 +54,7 @@ public class SystemCursorListener extends DragListener {
 
     @Override
     public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-        if (!draggingCursor && !isDisabled(event.getListenerActor())) {
+        if (!draggingCursor && ignoreDisabled || !isDisabled(event.getListenerActor())) {
             Gdx.graphics.setSystemCursor(systemCursor);
         }
     }
