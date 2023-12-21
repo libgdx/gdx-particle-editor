@@ -7,19 +7,14 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
-import com.badlogic.gdx.utils.Align;
-import com.ray3k.gdxparticleeditor.Core;
 import com.ray3k.gdxparticleeditor.FileDialogs;
 import com.ray3k.gdxparticleeditor.Settings;
 import com.ray3k.gdxparticleeditor.runnables.ExportRunnable;
-import com.ray3k.gdxparticleeditor.runnables.SaveAsRunnable;
-import com.ray3k.gdxparticleeditor.runnables.SaveRunnable;
 import com.ray3k.stripe.PopTable;
 
 import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.Listeners.*;
-import static com.ray3k.gdxparticleeditor.Settings.DEFAULT_PRESUME_FILE_EXTENSION;
-import static com.ray3k.gdxparticleeditor.Settings.NAME_PRESUME_FILE_EXTENSION;
+import static com.ray3k.gdxparticleeditor.Settings.*;
 
 /**
  * PopTable used to export a particle effect. This enables the user to save a copy of the file without affecting the
@@ -77,16 +72,19 @@ public class PopExport extends PopTable {
         label = new Label("Save Path:", skin);
         table.add(label);
 
-        var textField = new TextField("", skin);
+        fileHandle = Gdx.files.absolute(getDefaultExportPath());
+
+        var textField = new TextField(fileHandle.isDirectory() ? "" : fileHandle.path(), skin);
         textField.setDisabled(true);
         table.add(textField).width(250);
         addHandListenerIgnoreDisabled(textField);
         onClick(textField, () -> {
             var useFileExtension = preferences.getBoolean(NAME_PRESUME_FILE_EXTENSION, DEFAULT_PRESUME_FILE_EXTENSION);
             var filterPatterns = useFileExtension ? new String[] {"p"} : null;
-            var f = FileDialogs.saveDialog("Export File...", Settings.getDefaultSavePath(),  defaultFileName, filterPatterns, "Particle Files (*.p)");
+            var f = FileDialogs.saveDialog("Export File...", Settings.getDefaultExportPath(),  defaultFileName, filterPatterns, "Particle Files (*.p)");
             if (f != null) {
                 fileHandle = f;
+                setDefaultExportPath(fileHandle);
                 textField.setText(fileHandle.path());
                 exportTextButton.setDisabled(false);
             }
@@ -105,7 +103,7 @@ public class PopExport extends PopTable {
         add(table);
 
         exportTextButton = new TextButton("Export", skin, "highlighted");
-        exportTextButton.setDisabled(true);
+        exportTextButton.setDisabled(fileHandle.isDirectory());
         table.add(exportTextButton);
         addHandListener(exportTextButton);
         onChange(exportTextButton, this::save);

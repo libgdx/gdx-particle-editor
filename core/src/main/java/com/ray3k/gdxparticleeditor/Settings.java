@@ -87,6 +87,15 @@ public class Settings {
         preferences.flush();
     }
 
+    public static String getDefaultExportPath() {
+        return preferences.getString("defaultExportPath", getDefaultSavePath());
+    }
+
+    public static void setDefaultExportPath(FileHandle defaultExportPath) {
+        preferences.putString("defaultExportPath", defaultExportPath.path());
+        preferences.flush();
+    }
+
     public static int[] readModifierText(String modifiersText) {
         if (modifiersText.isEmpty()) return new int[0];
 
