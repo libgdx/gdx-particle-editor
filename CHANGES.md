@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.5
+* 
 ### Version 1.0.4
 * Added "Export" option to allow users to save a copy of their particle file
 * Fixed tooltips for "zoom in" and "zoom out"
