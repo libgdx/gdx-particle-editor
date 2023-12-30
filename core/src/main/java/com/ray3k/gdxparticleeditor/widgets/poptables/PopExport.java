@@ -86,7 +86,7 @@ public class PopExport extends PopTable {
         onClick(leadingTruncateLabel, () -> {
             var useFileExtension = preferences.getBoolean(NAME_PRESUME_FILE_EXTENSION, DEFAULT_PRESUME_FILE_EXTENSION);
             var filterPatterns = useFileExtension ? new String[] {"p"} : null;
-            var f = FileDialogs.saveDialog("Export File...", Settings.getDefaultExportPath(),  defaultFileName, filterPatterns, "Particle Files (*.p)");
+            var f = FileDialogs.saveDialog("Export File...", fileHandle.isDirectory() ? fileHandle.path() : fileHandle.parent().path(),  defaultFileName, filterPatterns, "Particle Files (*.p)");
             if (f != null) {
                 fileHandle = f;
                 setDefaultExportPath(fileHandle);
