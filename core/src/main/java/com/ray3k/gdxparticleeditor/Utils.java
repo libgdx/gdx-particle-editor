@@ -183,8 +183,8 @@ public class Utils {
         for (var emitter : particleEffect.getEmitters()) {
             activeEmitters.put(emitter, true);
             for (int i = 0; i < emitter.getImagePaths().size; i++) {
-                var tempHandle = new FileHandle(emitter.getImagePaths().get(i));
-                var path = tempHandle.name();
+                var path = new FileHandle(emitter.getImagePaths().get(i)).name();
+                emitter.getImagePaths().set(i, path);
                 var imageHandle = fileHandle.parent().child(path);
                 fileHandles.put(path, imageHandle);
                 if (i < emitter.getSprites().size)
@@ -312,8 +312,8 @@ public class Utils {
             activeEmitters.put(emitter, true);
 
             for (int i = 0; i < emitter.getImagePaths().size; i++) {
-                var tempHandle = new FileHandle(emitter.getImagePaths().get(i));
-                var path = tempHandle.name();
+                var path = new FileHandle(emitter.getImagePaths().get(i)).name();
+                emitter.getImagePaths().set(i, path);
                 var imageHandle = fileHandle.parent().child(path);
                 fileHandles.put(path, imageHandle);
                 if (i < emitter.getSprites().size)
