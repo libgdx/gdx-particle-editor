@@ -110,7 +110,10 @@ public class ImagesSubPanel extends Panel {
         buttonGroup.add(checkBoxSingle);
         addHandListener(checkBoxSingle);
         addTooltip(checkBoxSingle, "Only the selected image will be drawn", Align.top, Align.top, tooltipBottomArrowStyle);
-        onChange(checkBoxSingle, () -> UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.single, selectedEmitter.getSpriteMode(), "change Image Sprite Mode")));
+        onChange(checkBoxSingle, () -> {
+            UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.single, selectedEmitter.getSpriteMode(), "change Image Sprite Mode"));
+            particleEffect.reset();
+        });
 
         table.row();
         var checkBoxRandom = new CheckBox("Random", skin, "radio");
@@ -120,7 +123,10 @@ public class ImagesSubPanel extends Panel {
         buttonGroup.add(checkBoxRandom);
         addHandListener(checkBoxRandom);
         addTooltip(checkBoxRandom, "A randomly selected image will be chosen for each particle", Align.top, Align.top, tooltipBottomArrowStyle);
-        onChange(checkBoxRandom, () -> UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.random, selectedEmitter.getSpriteMode(), "change Image Sprite Mode")));
+        onChange(checkBoxRandom, () -> {
+            UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.random, selectedEmitter.getSpriteMode(), "change Image Sprite Mode"));
+            particleEffect.reset();
+        });
 
         table.row();
         var checkBoxAnimated = new CheckBox("Animated", skin, "radio");
@@ -130,7 +136,10 @@ public class ImagesSubPanel extends Panel {
         buttonGroup.add(checkBoxAnimated);
         addHandListener(checkBoxAnimated);
         addTooltip(checkBoxAnimated, "All images will be displayed in sequence over the life of each particle", Align.top, Align.top, tooltipBottomArrowStyle);
-        onChange(checkBoxAnimated, () -> UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.animated, selectedEmitter.getSpriteMode(), "change Image Sprite Mode")));
+        onChange(checkBoxAnimated, () -> {
+            UndoManager.add(new ImagesSpriteModeUndoable(selectedEmitter, SpriteMode.animated, selectedEmitter.getSpriteMode(), "change Image Sprite Mode"));
+            particleEffect.reset();
+        });
 
         //draggable text list
         list = new DraggableTextList(true, draggableTextListNoBgStyle);
