@@ -2,6 +2,7 @@
 ### Version 1.0.5
 * Fix export file dialog defaulting to an incorrect path
 * Fixed image name error when loading old particle effects with whole paths listed in the particle file
+* Fixed crash when pressing the Ctrl+Tab shortcut when the screen is defaulted to anything other than "Welcome"
 ### Version 1.0.4
 * Added "Export" option to allow users to save a copy of their particle file
 * Fixed tooltips for "zoom in" and "zoom out"

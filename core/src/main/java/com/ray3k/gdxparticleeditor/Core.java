@@ -366,9 +366,10 @@ public class Core extends ApplicationAdapter {
 
         stage.addListener(shortcutManager);
 
-        if (openTable == null) openTable = preferences.getString(NAME_OPEN_TO_SCREEN, DEFAULT_OPEN_TO_SCREEN);
+        Core.openTable = openTable;
+        if (Core.openTable == null) Core.openTable = preferences.getString(NAME_OPEN_TO_SCREEN, DEFAULT_OPEN_TO_SCREEN);
 
-        switch (openTable) {
+        switch (Core.openTable) {
             case "Welcome":
                 var welcomeTable = new WelcomeTable();
                 root.setActor(welcomeTable);
