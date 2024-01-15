@@ -1424,6 +1424,9 @@ public class PopColorPicker extends PopTable {
         table.add(stack);
 
         if (oldColor != null) {
+            stack.setTouchable(Touchable.enabled);
+            if (buttonListener != null) stack.addListener(buttonListener);
+
             image = new Image(style.previewSwatchBackground);
             image.setScaling(Scaling.none);
             stack.add(image);
@@ -1445,6 +1448,20 @@ public class PopColorPicker extends PopTable {
             swatchNewImage.setScaling(Scaling.none);
             stack.add(swatchNewImage);
         }
+        stack.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (oldColor != null) {
+                    System.out.println(x + " " + y);
+                    r = oldColor.r;
+                    g = oldColor.g;
+                    b = oldColor.b;
+                    a = oldColor.a;
+                    updateHSB();
+                    updateColorDisplay();
+                }
+            }
+        });
 
         hexTextField = new TextField("", style.hexTextFieldStyle) {
             @Override
