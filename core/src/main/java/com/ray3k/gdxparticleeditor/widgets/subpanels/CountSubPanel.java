@@ -60,7 +60,10 @@ public class CountSubPanel extends Panel {
         addIbeamListener(maxSpinner.getTextField());
         addUnfocusOnEnterKeyListener(maxSpinner);
         addTooltip(maxSpinner, "The maximum number of particles allowed", Align.top, Align.top, tooltipBottomArrowStyle);
-        changeListener = onChange(maxSpinner, () -> UndoManager.add(new CountMaxUndoable(selectedEmitter, maxSpinner.getValueAsInt(), selectedEmitter.getMaxParticleCount())));
+        changeListener = onChange(maxSpinner, () -> {
+            var value = Math.max(0, maxSpinner.getValueAsInt());
+            UndoManager.add(new CountMaxUndoable(selectedEmitter, value, selectedEmitter.getMaxParticleCount()));
+        });
         addInfiniteSlider(maxSpinner, 1, 20, false, changeListener);
     }
 }
