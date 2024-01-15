@@ -230,6 +230,9 @@ public class Listeners {
                     if (((Disableable) actor).isDisabled()) return;
                 }
 
+                var inputProcessor = Gdx.input.getInputProcessor();
+                if (inputProcessor != actor.getStage()) return;
+
                 popTable.show(foreground ? foregroundStage : stage);
                 popTable.attachToActor(actor, edge, align);
                 if (popTableStyle == tooltipBottomRightArrowStyle) popTable.setAttachOffsetX(7);

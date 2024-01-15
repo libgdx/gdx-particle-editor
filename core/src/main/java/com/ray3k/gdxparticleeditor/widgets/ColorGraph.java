@@ -28,8 +28,7 @@ import lombok.Getter;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
 import static com.ray3k.gdxparticleeditor.Core.stage;
-import static com.ray3k.gdxparticleeditor.Listeners.handListener;
-import static com.ray3k.gdxparticleeditor.Listeners.ibeamListener;
+import static com.ray3k.gdxparticleeditor.Listeners.*;
 import static com.ray3k.gdxparticleeditor.widgets.ColorGraph.ColorGraphEventType.*;
 import static com.ray3k.gdxparticleeditor.widgets.styles.Styles.popColorPickerStyle;
 
@@ -295,6 +294,7 @@ public class ColorGraph extends Table {
                             cp.addListener(new TableShowHideListener() {
                                 @Override
                                 public void tableShown(Event event) {
+                                    hideAllTooltips();
                                 }
 
                                 @Override
