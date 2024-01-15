@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.6
+* 
 ### Version 1.0.5
 * Fix export file dialog defaulting to an incorrect path
 * Fixed image name error when loading old particle effects with whole paths listed in the particle file
