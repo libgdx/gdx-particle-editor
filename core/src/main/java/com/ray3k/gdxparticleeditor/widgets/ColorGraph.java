@@ -253,6 +253,7 @@ public class ColorGraph extends Table {
                             allowDrag = false;
                             Gdx.input.setInputProcessor(foregroundStage);
                             cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
+                            cp.setShowAlpha(false);
                             cp.setHideOnUnfocus(true);
                             cp.setButtonListener(handListener);
                             cp.setTextFieldListener(ibeamListener);

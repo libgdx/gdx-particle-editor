@@ -54,6 +54,7 @@ public class PopColorPicker extends PopTable {
     private static TenPatchDrawable whiteTenPatch;
     private EventListener buttonListener;
     private EventListener textFieldListener;
+    private boolean showAlpha = true;
 
     public PopColorPicker(Color originalColor, Skin skin) {
         this(originalColor, skin.get(PopColorPickerStyle.class));
@@ -821,10 +822,10 @@ public class PopColorPicker extends PopTable {
         table.addActor(verticalModelArrowImage);
 
         Table controlTable = new Table();
-        subTable.add(controlTable);
+        subTable.add(controlTable).growY();
 
         Table sliderTable = new Table();
-        controlTable.add(sliderTable);
+        controlTable.add(sliderTable).expandY();
 
         radioGroup = new ButtonGroup<ImageButton>();
 
@@ -1367,15 +1368,15 @@ public class PopColorPicker extends PopTable {
         });
 
         sliderTable.row();
-        sliderTable.add();
+        if (showAlpha) sliderTable.add();
 
         label = new Label("A", style.labelStyle);
-        sliderTable.add(label);
+        if (showAlpha) sliderTable.add(label);
 
         table = new Table();
         table.setClip(true);
         table.setBackground(style.colorSliderBackground);
-        sliderTable.add(table).width(180).fillY();
+        if (showAlpha) sliderTable.add(table).width(180).fillY();
 
         Stack stack = new Stack();
         table.add(stack).grow();
@@ -1406,7 +1407,7 @@ public class PopColorPicker extends PopTable {
             }
         };
         alphaTextField.setProgrammaticChangeEvents(false);
-        sliderTable.add(alphaTextField).width(50);
+        if (showAlpha) sliderTable.add(alphaTextField).width(50);
         if (textFieldListener != null) alphaTextField.addListener(textFieldListener);
         applyFieldListener(alphaTextField);
         alphaTextField.addListener(new ChangeListener() {
@@ -1419,7 +1420,7 @@ public class PopColorPicker extends PopTable {
         });
 
         table = new Table();
-        sliderTable.add(table);
+        if (showAlpha) sliderTable.add(table);
 
         table.defaults().space(3);
         imageButton = new ImageButton(style.increaseButtonStyle);
@@ -2004,6 +2005,14 @@ public class PopColorPicker extends PopTable {
 
     private static boolean isShifting() {
         return Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT);
+    }
+
+    public boolean isShowAlpha() {
+        return showAlpha;
+    }
+
+    public void setShowAlpha(boolean showAlpha) {
+        this.showAlpha = showAlpha;
     }
 
     public EventListener getButtonListener() {
