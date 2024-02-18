@@ -1,6 +1,6 @@
 # Changelog
 ### Version 1.0.6
-* 
+* Resolved issue with Angle still affecting the emitter despite being deactivated. Thanks ludek17052.
 ### Version 1.0.5
 * Fix export file dialog defaulting to an incorrect path
 * Fixed image name error when loading old particle effects with whole paths listed in the particle file
