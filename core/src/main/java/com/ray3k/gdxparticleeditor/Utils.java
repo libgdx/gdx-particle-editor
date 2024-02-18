@@ -128,7 +128,6 @@ public class Utils {
         try {
             if (fileHandle.type() != FileType.Internal) {
                 newParticleEffect.loadEmitters(fileHandle);
-                newParticleEffect.setPosition(0, 0);
 
                 if (imageFileMap == null) newParticleEffect.loadEmitterImages(fileHandle.parent());
                 else {
@@ -171,6 +170,12 @@ public class Utils {
 
             Gdx.app.error(Core.class.getName(), "Error loading particle file.", e);
             return false;
+        }
+
+        //Set position of the new effect to the position of the current one
+        if (activeEmitters.size > 0) {
+            var emitter = activeEmitters.orderedKeys().get(0);
+            newParticleEffect.setPosition(emitter.getX(), emitter.getY());
         }
 
         disposeParticleEffect();
