@@ -65,6 +65,10 @@ public class SetPropertyUndoable implements Undoable {
                 break;
             case ANGLE:
                 selectedEmitter.getAngle().setActive(active);
+                if (!active) {
+                    selectedEmitter.getAngle().setHigh(0);
+                    selectedEmitter.getAngle().setLow(0);
+                }
                 break;
             case ROTATION:
                 selectedEmitter.getRotation().setActive(active);
