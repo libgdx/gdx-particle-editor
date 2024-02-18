@@ -1,6 +1,4 @@
 # Changelog
-### Version 1.0.7
-* 
 ### Version 1.0.6
 * Resolved issue with Angle still affecting the emitter despite being deactivated. Thanks ludek17052.
 * The position of a newly loaded effect is now set to the position of the old one. Thanks ChinQingl.
