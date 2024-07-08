@@ -50,7 +50,7 @@ public class OptionsSubPanel extends Panel {
         attachedCheckBox.setChecked(selectedEmitter.isAttached());
         bodyTable.add(attachedCheckBox);
         addHandListener(attachedCheckBox);
-        addTooltip(attachedCheckBox,  "An attached particle emitter draws its particles relative to its origin. This makes existing particles move with the emitter when the particle effect's position is changed.", Align.top, Align.top, tooltipWidth, tooltipBottomArrowStyle);
+        addTooltip(attachedCheckBox,  "An attached particle emitter draws its particles relative to its origin. This makes existing particles move with the emitter when the particle effect's position is changed. This requires slightly more processing to translate all the particles.", Align.top, Align.top, tooltipWidth, tooltipBottomArrowStyle);
         onChange(attachedCheckBox, () -> {
             var undoable = new OptionsUndoable(selectedEmitter, Type.ATTACHED, attachedCheckBox.isChecked(), "change Attached option");
             UndoManager.add(undoable);
