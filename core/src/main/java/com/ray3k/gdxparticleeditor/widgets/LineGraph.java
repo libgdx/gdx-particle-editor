@@ -227,7 +227,7 @@ public class LineGraph extends Table {
         var dragListener = new DragListener() {
             @Override
             public void drag(InputEvent event, float x, float y, int pointer) {
-                temp.set(x, y);
+                temp.set(x - getDragStartX() + getTouchDownX(), y - getDragStartY() + getTouchDownY());
                 node.localToActorCoordinates(LineGraph.this, temp);
                 node.percentX = MathUtils.clamp(onlyDragY ? node.percentX : (temp.x - getPadLeft()) / (getWidth() - getPadLeft() - getPadRight()), 0, 1);
                 node.percentY = MathUtils.clamp((temp.y - getPadBottom()) / (getHeight() - getPadBottom() - getPadTop()), 0, 1);

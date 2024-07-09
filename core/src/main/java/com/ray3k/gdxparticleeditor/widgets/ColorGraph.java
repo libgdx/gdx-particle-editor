@@ -334,7 +334,7 @@ public class ColorGraph extends Table {
                 clickListener.cancel();
                 openColorPicker = false;
                 if (allowDrag && !stationary) {
-                    temp.set(x, y);
+                    temp.set(x - getDragStartX() + getTouchDownX(), y - getDragStartY() + getTouchDownY());
                     node.localToActorCoordinates(nodeTable, temp);
 
                     nodeData.value = MathUtils.clamp(temp.x / nodeTable.getWidth(), 0, 1);
