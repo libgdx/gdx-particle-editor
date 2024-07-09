@@ -489,7 +489,7 @@ colorbar-bg
   index: -1
 colorbar-knob-bg
   rotate: false
-  xy: 1003, 197
+  xy: 1839, 1891
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
@@ -503,28 +503,28 @@ colorbar-knob-fill
   index: -1
 colorbar-left-bg
   rotate: false
-  xy: 1580, 1384
+  xy: 1003, 197
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-left-fill
   rotate: false
-  xy: 1580, 1341
+  xy: 1580, 1384
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-right-bg
   rotate: false
-  xy: 1606, 1442
+  xy: 1580, 1341
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-right-fill
   rotate: false
-  xy: 1580, 1298
+  xy: 1606, 1442
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
@@ -636,7 +636,7 @@ cp-slider-background
   index: -1
 cp-slider-knob-horizontal
   rotate: false
-  xy: 1839, 1916
+  xy: 1508, 913
   size: 10, 16
   orig: 10, 16
   offset: 0, 0
@@ -692,14 +692,14 @@ divider
   index: -1
 draggable-list-divider
   rotate: false
-  xy: 1375, 1993
+  xy: 1392, 1993
   size: 11, 3
   orig: 11, 3
   offset: 0, 0
   index: -1
 draggable-list-divider-over
   rotate: false
-  xy: 1362, 1993
+  xy: 1379, 1993
   size: 11, 3
   orig: 11, 3
   offset: 0, 0
@@ -842,6 +842,13 @@ header
   xy: 854, 1993
   size: 506, 54
   orig: 506, 54
+  offset: 0, 0
+  index: -1
+header-background
+  rotate: false
+  xy: 1362, 1993
+  size: 15, 3
+  orig: 15, 3
   offset: 0, 0
   index: -1
 headerx1_5
@@ -1224,14 +1231,14 @@ resize-knob-over
   index: -1
 resize-knob-up
   rotate: false
-  xy: 1405, 1998
+  xy: 1108, 919
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 scrollbar
   rotate: false
-  xy: 1508, 919
+  xy: 1405, 1994
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
@@ -1343,7 +1350,7 @@ split-v
   index: -1
 subpanel-body-divider
   rotate: false
-  xy: 1577, 1279
+  xy: 509, 910
   size: 1, 24
   orig: 1, 24
   offset: 0, 0
@@ -1364,7 +1371,7 @@ subpanel-body-right
   index: -1
 subpanel-bottom-divider
   rotate: false
-  xy: 512, 927
+  xy: 1082, 893
   size: 1, 7
   orig: 1, 7
   offset: 0, 0
@@ -1385,7 +1392,7 @@ subpanel-bottom-right
   index: -1
 subpanel-header-divider
   rotate: false
-  xy: 509, 910
+  xy: 512, 910
   size: 1, 24
   orig: 1, 24
   offset: 0, 0
@@ -1413,7 +1420,7 @@ subpanel2-body
   index: -1
 subpanel2-divider
   rotate: false
-  xy: 512, 905
+  xy: 1820, 1841
   size: 1, 20
   orig: 1, 20
   offset: 0, 0
