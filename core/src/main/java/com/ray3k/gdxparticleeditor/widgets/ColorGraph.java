@@ -346,7 +346,7 @@ public class ColorGraph extends Table {
                 }
             }
         };
-//        dragListener.setTapSquareSize(5);
+        dragListener.setTapSquareSize(5);
         node.addListener(dragListener);
         return nodeData;
     }
