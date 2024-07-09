@@ -590,4 +590,21 @@ public class Utils {
             toastQueue.add(toast);
         }
     }
+
+    public static void reloadSprites() {
+        UndoManager.clear();
+
+        for (var sprite : sprites.values()) {
+            sprite.getTexture().dispose();
+        }
+        sprites.clear();
+        for (var emitter : activeEmitters.keys()) {
+            emitter.getSprites().clear();
+            for (var path : emitter.getImagePaths()) {
+                var sprite = new Sprite(new Texture(fileHandles.get(path)));
+                sprites.put(path, sprite);
+                emitter.getSprites().add(sprite);
+            }
+        }
+    }
 }

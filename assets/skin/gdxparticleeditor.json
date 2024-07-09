@@ -2081,6 +2081,12 @@
 		"checked": "pager-dot-selected",
 		"checkedOver": "pager-dot-selected-over",
 		"checkedDown": "pager-dot-selected-pressed"
+	},
+	"reload": {
+		"up": "button-reload-up",
+		"down": "button-reload-down",
+		"over": "button-reload-over",
+		"disabled": "button-reload-disabled"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {

@@ -38,6 +38,7 @@ public class Settings {
     public static final int[] DEFAULT_EXPORT_PRIMARY_KEYBIND = {Keys.CONTROL_LEFT, Keys.E};
     public static final int[] DEFAULT_OPEN_PRIMARY_KEYBIND = {Keys.CONTROL_LEFT, Keys.O};
     public static final int[] DEFAULT_SWITCH_MODE_KEYBIND = {Keys.CONTROL_LEFT, Keys.TAB};
+    public static final int[] DEFAULT_RELOAD_IMAGES_KEYBIND = {Keys.F5};
     public static FileHandle logFile;
     public static final int GLOBAL_SCOPE = 0;
     public static final int CLASSIC_SCOPE = 1;

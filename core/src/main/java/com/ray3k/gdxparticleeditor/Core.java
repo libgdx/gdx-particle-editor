@@ -226,6 +226,11 @@ public class Core extends ApplicationAdapter {
     public static SwitchModeRunnable switchModeRunnable;
 
     /**
+     * The Runnable used to reload the emitter images.
+     */
+    public static ReloadImagesRunnable reloadImagesRunnable;
+
+    /**
      * The maximum number of particles recorded in 5 second intervals. Used for the preview stats and the SummaryPanel.
      */
     public static int maxParticleCount;
@@ -312,6 +317,7 @@ public class Core extends ApplicationAdapter {
         saveRunnable.setSaveAsRunnable(saveAsRunnable);
         imagesRunnable = new ImagesRunnable();
         switchModeRunnable = new SwitchModeRunnable();
+        reloadImagesRunnable = new ReloadImagesRunnable();
 
         initKeyMap();
         shortcutManager = new ShortcutManager();
@@ -411,6 +417,7 @@ public class Core extends ApplicationAdapter {
         }));
         shortcuts.add(createShortcut("Open", "Keyboard shortcut for the Open action.", DEFAULT_OPEN_PRIMARY_KEYBIND, null, GLOBAL_SCOPE, openRunnable));
         shortcuts.add(createShortcut("Switch Mode", "Keyboard shortcut to switch the visible mode.", DEFAULT_SWITCH_MODE_KEYBIND, null, GLOBAL_SCOPE, switchModeRunnable));
+        shortcuts.add(createShortcut("Reload Images", "Keyboard shortcut to reload the emitter images.", DEFAULT_RELOAD_IMAGES_KEYBIND, null, GLOBAL_SCOPE, reloadImagesRunnable));
 
         // Classic only keybinds
 //        shortcuts.add(createShortcut("(Classic) Classic", "Hello Classic", primaryKeybind, secondaryKeybind, CLASSIC_SCOPE, () -> System.out.println("Hello Classic")));

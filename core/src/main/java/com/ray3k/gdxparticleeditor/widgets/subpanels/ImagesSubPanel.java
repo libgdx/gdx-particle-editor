@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragScrollListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.ray3k.gdxparticleeditor.Core;
+import com.ray3k.gdxparticleeditor.Utils;
 import com.ray3k.gdxparticleeditor.undo.UndoManager;
 import com.ray3k.gdxparticleeditor.undo.undoables.ImagesAddUndoable;
 import com.ray3k.gdxparticleeditor.undo.undoables.ImagesMoveUndoable;
@@ -32,6 +34,7 @@ public class ImagesSubPanel extends Panel {
     private Button removeButton;
     private Button moveUpButton;
     private Button moveDownButton;
+    private Button reloadButton;
 
     public ImagesSubPanel() {
         imagesSubPanel = this;
@@ -198,6 +201,13 @@ public class ImagesSubPanel extends Panel {
             }
             updateDisabled();
         });
+
+        //reload
+        reloadButton = new Button(skin, "reload");
+        table.add(reloadButton);
+        addHandListener(reloadButton);
+        onChange(reloadButton, Utils::reloadSprites);
+        addTooltip(reloadButton, "Reload all images in every emitter. Use this to reflect changes in the preview.", Align.top, Align.top, tooltipBottomArrowStyle);
 
         //move down
         table.row();
