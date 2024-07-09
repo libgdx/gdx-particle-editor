@@ -340,6 +340,13 @@ public class Core extends ApplicationAdapter {
 
         initShaderProgram();
         updateWindowTitle();
+
+        //Set the initial FPS
+        if (preferences.contains(NAME_FPS)) {
+            var fps = preferences.getInteger(NAME_FPS);
+            Gdx.graphics.setForegroundFPS(fps);
+            Gdx.graphics.setVSync(fps == Gdx.graphics.getDisplayMode().refreshRate);
+        }
     }
 
     public static void populate(String openTable) {

@@ -17,12 +17,14 @@ import static com.ray3k.gdxparticleeditor.Utils.writeKeybindToPreferences;
  */
 public class Settings {
     public static final String NAME_MAXIMUM_UNDOS = "Maximum undos";
+    public static final String NAME_FPS = "FPS";
     public static final String NAME_CHECK_FOR_UPDATES = "Check for updates";
     public static final String NAME_PRESUME_FILE_EXTENSION = "Presume file extension";
     public static final String NAME_OPEN_TO_SCREEN = "Open to screen";
     public static final String NAME_SCALE = "Scale";
     public static final String NAME_EXPORT_IMAGES = "Export images";
     public static final int DEFAULT_MAXIMUM_UNDOS = 100;
+    public static final int DEFAULT_FPS = Gdx.graphics.getDisplayMode().refreshRate;
     public static final boolean DEFAULT_CHECK_FOR_UPDATES = true;
     public static final boolean DEFAULT_PRESUME_FILE_EXTENSION = true;
     public static final String DEFAULT_OPEN_TO_SCREEN = "Welcome";

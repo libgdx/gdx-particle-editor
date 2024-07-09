@@ -1,6 +1,7 @@
 # Changelog
 ### Version 1.0.7
-* Adding images now inserts the new images after the currently selected image 
+* Adding images now inserts the new images after the currently selected image
+* Added user configurable FPS setting
 * Minor UI tweaks and bug fixes
 ### Version 1.0.6
 * Resolved issue with Angle still affecting the emitter despite being deactivated. Thanks ludek17052.

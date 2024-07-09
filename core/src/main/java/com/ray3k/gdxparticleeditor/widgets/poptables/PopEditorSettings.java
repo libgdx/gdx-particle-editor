@@ -99,18 +99,18 @@ public class PopEditorSettings extends PopTable {
         label = new Label("Maximum Undos:", skin);
         settingsTable.add(label);
 
-        var spinner = new Spinner(0, 1, 0, Orientation.RIGHT_STACK, spinnerStyle);
-        spinner.setHoldIncrement(10);
-        spinner.setValue(preferences.getInteger(NAME_MAXIMUM_UNDOS, DEFAULT_MAXIMUM_UNDOS));
-        spinner.setProgrammaticChangeEvents(false);
-        settingsTable.add(spinner);
-        addIbeamListener(spinner.getTextField());
-        addHandListener(spinner.getButtonMinus());
-        addHandListener(spinner.getButtonPlus());
-        addTooltip(spinner, "The maximum number of undos that will be kept in memory", Align.top, Align.top,
+        var undosSpinner = new Spinner(0, 1, 0, Orientation.RIGHT_STACK, spinnerStyle);
+        undosSpinner.setHoldIncrement(10);
+        undosSpinner.setValue(preferences.getInteger(NAME_MAXIMUM_UNDOS, DEFAULT_MAXIMUM_UNDOS));
+        undosSpinner.setProgrammaticChangeEvents(false);
+        settingsTable.add(undosSpinner);
+        addIbeamListener(undosSpinner.getTextField());
+        addHandListener(undosSpinner.getButtonMinus());
+        addHandListener(undosSpinner.getButtonPlus());
+        addTooltip(undosSpinner, "The maximum number of undos that will be kept in memory", Align.top, Align.top,
             tooltipBottomArrowStyle);
-        onChange(spinner, () -> {
-            preferences.putInteger(NAME_MAXIMUM_UNDOS, spinner.getValueAsInt());
+        onChange(undosSpinner, () -> {
+            preferences.putInteger(NAME_MAXIMUM_UNDOS, undosSpinner.getValueAsInt());
             preferences.flush();
         });
 
@@ -207,6 +207,52 @@ public class PopEditorSettings extends PopTable {
         onChange(textButton, () -> {
             Utils.updateViewportScale(uiScale);
             showConfirmScalePop();
+        });
+
+        settingsTable.row();
+        sliderTable = new Table();
+        sliderTable.defaults().space(5);
+        settingsTable.add(sliderTable).colspan(2).center();
+
+        label = new Label("Editor FPS:", skin);
+        sliderTable.add(label);
+
+        var fpsSpinner = new Spinner(0, 1, 0, Orientation.RIGHT_STACK, spinnerStyle);
+        fpsSpinner.setHoldIncrement(10);
+        fpsSpinner.setMinimum(10);
+        fpsSpinner.setValue(preferences.getInteger(NAME_FPS, DEFAULT_FPS));
+        fpsSpinner.setProgrammaticChangeEvents(false);
+        sliderTable.add(fpsSpinner);
+        addIbeamListener(fpsSpinner.getTextField());
+        addHandListener(fpsSpinner.getButtonMinus());
+        addHandListener(fpsSpinner.getButtonPlus());
+        addTooltip(fpsSpinner, "The FPS cap of the editor", Align.top, Align.top,
+            tooltipBottomArrowStyle);
+
+        textButton = new TextButton("Apply", skin);
+        sliderTable.add(textButton);
+        addHandListener(textButton);
+        addTooltip(textButton, "Apply the FPS cap to the editor", Align.top, Align.top, tooltipBottomArrowStyle);
+        onChange(textButton, () -> {
+            var fps = fpsSpinner.getValueAsInt();
+            preferences.putInteger(NAME_FPS, fps);
+            preferences.flush();
+            Gdx.graphics.setForegroundFPS(fps);
+            Gdx.graphics.setVSync(false);
+            fpsSpinner.setValue(fps);
+        });
+
+        textButton = new TextButton("Reset", skin);
+        sliderTable.add(textButton);
+        addHandListener(textButton);
+        addTooltip(textButton, "Reset the FPS cap to the refresh rate of the monitor", Align.top, Align.top, tooltipBottomArrowStyle);
+        onChange(textButton, () -> {
+            var fps = Gdx.graphics.getDisplayMode().refreshRate;
+            preferences.putInteger(NAME_FPS, fps);
+            preferences.flush();
+            Gdx.graphics.setForegroundFPS(fps);
+            Gdx.graphics.setVSync(true);
+            fpsSpinner.setValue(fps);
         });
 
         // Shortcuts
