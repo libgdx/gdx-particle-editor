@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.ray3k.gdxparticleeditor.FileDialogs;
 import com.ray3k.gdxparticleeditor.undo.UndoManager;
 import com.ray3k.gdxparticleeditor.undo.undoables.ImagesAddUndoable;
+import com.ray3k.gdxparticleeditor.widgets.subpanels.ImagesSubPanel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -57,7 +58,7 @@ public class ImagesRunnable implements Runnable {
     }
 
     private void loadOnMainThread (Array<FileHandle> selectedFileHandles) {
-        UndoManager.add(new ImagesAddUndoable(selectedEmitter, selectedFileHandles, "Add Images"));
+        UndoManager.add(new ImagesAddUndoable(selectedEmitter, ImagesSubPanel.imagesSubPanel.list.getSelectedIndex() + 1, selectedFileHandles, "Add Images"));
         if (selectedFileHandles.size > 0) {
             imagesSubPanel.updateList();
             imagesSubPanel.updateDisabled();

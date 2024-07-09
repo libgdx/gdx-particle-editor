@@ -20,6 +20,7 @@ import static com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel.
 @AllArgsConstructor
 public class ImagesAddUndoable implements Undoable {
     private ParticleEmitter emitter;
+    private int imageInsertIndex;
     private Array<FileHandle> selectedFileHandles;
     private String description;
     private final Array<String> newImagePaths = new Array<>();
@@ -31,12 +32,12 @@ public class ImagesAddUndoable implements Undoable {
     public void undo() {
         selectedEmitter = emitter;
 
-        emitter.getImagePaths().removeRange(emitter.getImagePaths().size - newImagePaths.size, emitter.getImagePaths().size - 1);
+        emitter.getImagePaths().removeRange(imageInsertIndex, imageInsertIndex + newImagePaths.size - 1);
         Utils.removeUnusedImageFiles();
         for (var newSprite : newSpriteMap) {
             sprites.remove(newSprite.key);
         }
-        emitter.getSprites().removeRange(emitter.getSprites().size - newSprites.size, emitter.getSprites().size - 1);
+        emitter.getSprites().removeRange(imageInsertIndex, imageInsertIndex + newSprites.size - 1);
         refreshDisplay();
     }
 
@@ -44,10 +45,14 @@ public class ImagesAddUndoable implements Undoable {
     public void redo() {
         selectedEmitter = emitter;
 
-        emitter.getImagePaths().addAll(newImagePaths);
+        for (int i = 0; i < newImagePaths.size; i++) {
+            emitter.getImagePaths().insert(imageInsertIndex + i, newImagePaths.get(i));
+        }
         fileHandles.putAll(newFileHandles);
         sprites.putAll(newSpriteMap);
-        emitter.getSprites().addAll(newSprites);
+        for (int i = 0; i < newSprites.size; i++) {
+            emitter.getSprites().insert(imageInsertIndex + i, newSprites.get(i));
+        }
         refreshDisplay();
     }
 
@@ -62,10 +67,14 @@ public class ImagesAddUndoable implements Undoable {
             newSprites.add(sprite);
         }
 
-        emitter.getImagePaths().addAll(newImagePaths);
+        for (int i = 0; i < newImagePaths.size; i++) {
+            emitter.getImagePaths().insert(imageInsertIndex + i, newImagePaths.get(i));
+        }
         fileHandles.putAll(newFileHandles);
         sprites.putAll(newSpriteMap);
-        emitter.getSprites().addAll(newSprites);
+        for (int i = 0; i < newSprites.size; i++) {
+            emitter.getSprites().insert(imageInsertIndex + i, newSprites.get(i));
+        }
     }
 
     @Override

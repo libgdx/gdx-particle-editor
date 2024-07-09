@@ -20,6 +20,7 @@ import com.ray3k.gdxparticleeditor.undo.undoables.ImagesAddUndoable;
 import com.ray3k.gdxparticleeditor.widgets.InfSlider;
 import com.ray3k.gdxparticleeditor.widgets.NoCaptureKeyboardFocusListener;
 import com.ray3k.gdxparticleeditor.widgets.poptables.PopConfirmClose;
+import com.ray3k.gdxparticleeditor.widgets.subpanels.ImagesSubPanel;
 import com.ray3k.stripe.PopTable;
 import com.ray3k.stripe.PopTable.PopTableStyle;
 import com.ray3k.stripe.PopTable.TableShowHideListener;
@@ -361,7 +362,7 @@ public class Listeners {
             if (imageFileHandles.size > 0) {
                 if (effectEmittersPanel == null || emitterPropertiesPanel == null) return;
 
-                UndoManager.add(new ImagesAddUndoable(selectedEmitter, imageFileHandles, "Add Images"));
+                UndoManager.add(new ImagesAddUndoable(selectedEmitter, ImagesSubPanel.imagesSubPanel.list.getSelectedIndex() + 1, imageFileHandles, "Add Images"));
                 imagesSubPanel.updateList();
                 imagesSubPanel.updateDisabled();
 

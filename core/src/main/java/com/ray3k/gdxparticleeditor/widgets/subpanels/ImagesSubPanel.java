@@ -27,7 +27,7 @@ import static com.ray3k.gdxparticleeditor.widgets.styles.Styles.tooltipBottomArr
  */
 public class ImagesSubPanel extends Panel {
     public static ImagesSubPanel imagesSubPanel;
-    private DraggableTextList list;
+    public DraggableTextList list;
     private Button removeButton;
     private Button moveUpButton;
     private Button moveDownButton;
@@ -72,7 +72,7 @@ public class ImagesSubPanel extends Panel {
         onChange(textButton, () -> {
             var selectedFileHandles = new Array<FileHandle>();
             selectedFileHandles.add(Gdx.files.internal("particle.png"));
-            UndoManager.add(new ImagesAddUndoable(selectedEmitter, selectedFileHandles, "Add Default Image"));
+            UndoManager.add(new ImagesAddUndoable(selectedEmitter, list.getSelectedIndex() + 1, selectedFileHandles, "Add Default Image"));
             updateList();
             updateDisabled();
         });
@@ -86,7 +86,7 @@ public class ImagesSubPanel extends Panel {
         onChange(textButton, () -> {
             var selectedFileHandles = new Array<FileHandle>();
             selectedFileHandles.add(Gdx.files.internal("pre_particle.png"));
-            UndoManager.add(new ImagesAddUndoable(selectedEmitter, selectedFileHandles, "Add Default Image"));
+            UndoManager.add(new ImagesAddUndoable(selectedEmitter, list.getSelectedIndex() + 1, selectedFileHandles, "Add Default Image"));
             updateList();
             updateDisabled();
         });
@@ -239,11 +239,13 @@ public class ImagesSubPanel extends Panel {
 
     public void updateList() {
         var paths = selectedEmitter.getImagePaths();
+        var index = list.getSelectedIndex();
         list.clearChildren();
         for (var path : paths) {
             list.addText(path);
         }
         list.setAllowRemoval(list.getTexts().size > 1);
+        if (index >= 0 && index < list.getTexts().size) list.setSelected(index);
     }
 
     public void updateDisabled() {
