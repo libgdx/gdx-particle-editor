@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter.SpriteMode;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.DragScrollListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.ray3k.gdxparticleeditor.undo.UndoManager;
@@ -146,6 +147,7 @@ public class ImagesSubPanel extends Panel {
         list.setProgrammaticChangeEvents(false);
         list.setTextAlignment(Align.left);
         list.align(Align.top);
+        list.getDragAndDrop().setCancelTouchFocus(false);
         addHandListener(list);
         list.addListener(new DraggableTextListListener() {
             @Override
@@ -174,6 +176,8 @@ public class ImagesSubPanel extends Panel {
         scrollPane.setFadeScrollBars(false);
         bodyTable.add(scrollPane).size(listWidth, listHeight).spaceRight(10);
         addScrollFocusListener(scrollPane);
+        var dragScrollListener = new DragScrollListener(scrollPane);
+        list.addListener(dragScrollListener);
 
         table = new Table();
         bodyTable.add(table).spaceLeft(10);

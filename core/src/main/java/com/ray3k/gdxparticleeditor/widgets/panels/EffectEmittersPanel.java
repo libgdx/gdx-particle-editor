@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.DragScrollListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -87,6 +88,7 @@ public class EffectEmittersPanel extends Panel {
         emittersDraggableList = new DraggableList(true, draggableListStyle);
         emittersDraggableList.getDragAndDrop().setTapSquareSize(TAP_SQUARE);
         emittersDraggableList.align(Align.top);
+        emittersDraggableList.getDragAndDrop().setCancelTouchFocus(false);
         emittersDraggableList.addListener(new DraggableListListener() {
             @Override
             public void removed(Actor actor, int index) {
@@ -123,6 +125,8 @@ public class EffectEmittersPanel extends Panel {
         scrollPane.setScrollingDisabled(true, false);
         table.add(scrollPane).grow();
         addScrollFocusListener(scrollPane);
+        var dragScrollListener = new DragScrollListener(scrollPane);
+        emittersDraggableList.addListener(dragScrollListener);
 
         populateEmitters();
 
