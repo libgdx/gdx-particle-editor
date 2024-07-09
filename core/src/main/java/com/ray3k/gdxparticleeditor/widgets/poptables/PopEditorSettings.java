@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
@@ -79,13 +80,21 @@ public class PopEditorSettings extends PopTable {
         var label = new Label("SETTINGS", skin, "bold");
         add(label).padBottom(10);
 
-        //misc settings
         row();
+        var scrollTable = new Table();
+        var scrollPane = new ScrollPane(scrollTable, skin);
+        scrollPane.setFlickScroll(false);
+        scrollPane.setFadeScrollBars(false);
+        add(scrollPane);
+        addForegroundScrollFocusListener(scrollPane);
+
+        //misc settings
+        scrollTable.row();
         var settingsTable = new Table();
         settingsTable.columnDefaults(0).right().uniformX();
         settingsTable.columnDefaults(1).left().uniformX().width(80);
         settingsTable.defaults().space(5);
-        add(settingsTable);
+        scrollTable.add(settingsTable);
 
         label = new Label("Maximum Undos:", skin);
         settingsTable.add(label);
@@ -201,15 +210,14 @@ public class PopEditorSettings extends PopTable {
         });
 
         // Shortcuts
-        row();
-
+        scrollTable.row();
         var shortcutTable = new Table();
         shortcutTable.columnDefaults(0).right().uniformX();
         shortcutTable.columnDefaults(1).width(90);
         shortcutTable.columnDefaults(2).width(90);
         shortcutTable.columnDefaults(3).uniformX();
         shortcutTable.defaults().space(5);
-        add(shortcutTable).padTop(20);
+        scrollTable.add(shortcutTable).padTop(20);
 
         label = new Label("SHORTCUTS", skin, "header");
         shortcutTable.add(label).colspan(4).align(Align.center);
