@@ -119,6 +119,36 @@
 		"scaledSize": -1,
 		"markupEnabled": false,
 		"flip": false
+	},
+	"high-contrast": {
+		"file": "high-contrast.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"high-contrastx1_5": {
+		"file": "high-contrastx1_5.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"high-contrastx2": {
+		"file": "high-contrastx2.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"high-contrastx3": {
+		"file": "high-contrastx3.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	},
+	"high-contrastx4": {
+		"file": "high-contrastx4.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
 	}
 },
 "com.badlogic.gdx.graphics.Color": {
@@ -2211,6 +2241,9 @@
 	"textfield": {
 		"font": "font-black",
 		"background": "textfield-up-10"
+	},
+	"high-contrast": {
+		"font": "font-high-contrast"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {

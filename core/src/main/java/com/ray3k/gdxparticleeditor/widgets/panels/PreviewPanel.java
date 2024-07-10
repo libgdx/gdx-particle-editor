@@ -227,7 +227,7 @@ public class PreviewPanel extends Panel {
         previewStack.add(resizeWidget);
 
         //stats
-        statsLabel = new Label("", skin) {
+        statsLabel = new Label("", skin, "high-contrast") {
             float countdown = -1f;
             final float MAX_TIME = 5f;
 

@@ -16,6 +16,7 @@ public class SkinLoader {
         var uiScale = Utils.valueToUIscale(preferences.getFloat(NAME_SCALE, DEFAULT_SCALE));
 
         String fontName = null;
+        String highContrastName = null;
         String headerName = null;
         String blackName = null;
         String boldName = null;
@@ -26,12 +27,14 @@ public class SkinLoader {
         switch (uiScale) {
             case SCALE_1X:
                 fontName = "font";
+                highContrastName = "high-contrast";
                 headerName = "header";
                 blackName = "font-black";
                 boldName = "bold";
                 break;
             case SCALE_1_5X:
                 fontName = "fontx1_5";
+                highContrastName = "high-contrastx1_5";
                 headerName = "headerx1_5";
                 blackName = "font-blackx1_5";
                 boldName = "boldx1_5";
@@ -40,6 +43,7 @@ public class SkinLoader {
                 break;
             case SCALE_2X:
                 fontName = "fontx2";
+                highContrastName = "high-contrastx2";
                 headerName = "headerx2";
                 blackName = "font-blackx2";
                 boldName = "boldx2";
@@ -48,6 +52,7 @@ public class SkinLoader {
                 break;
             case SCALE_3X:
                 fontName = "fontx3";
+                highContrastName = "high-contrastx3";
                 headerName = "headerx3";
                 blackName = "font-blackx3";
                 boldName = "boldx3";
@@ -56,6 +61,7 @@ public class SkinLoader {
                 break;
             case SCALE_4X:
                 fontName = "fontx4";
+                highContrastName = "high-contrastx4";
                 headerName = "headerx4";
                 blackName = "font-blackx4";
                 boldName = "boldx4";
@@ -75,6 +81,13 @@ public class SkinLoader {
         font.getData().setScale(fontScale);
         font.setUseIntegerPositions(fontUseIntegerPositions);
         skin.add("font", font);
+
+        regions = skin.getRegions(highContrastName);
+        if (regions != null) font = new BitmapFont(new BitmapFont.BitmapFontData(Gdx.files.internal("skin/" + highContrastName + ".fnt"), false), regions, true);
+        else font = new BitmapFont(new BitmapFont.BitmapFontData(Gdx.files.internal("skin/" + highContrastName + ".fnt"), false), skin.getRegion(highContrastName), true);
+        font.getData().setScale(fontScale);
+        font.setUseIntegerPositions(fontUseIntegerPositions);
+        skin.add("font-high-contrast", font);
 
         regions = skin.getRegions(headerName);
         if (regions != null) font = new BitmapFont(new BitmapFont.BitmapFontData(Gdx.files.internal("skin/" + headerName + ".fnt"), false), regions, true);
