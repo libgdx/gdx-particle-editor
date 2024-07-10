@@ -639,7 +639,13 @@ public class PopTable extends Table {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (highlightActor != null) {
+            temp.setZero();
+            highlightActor.localToStageCoordinates(temp);
+            var oldX = highlightActor.getX();
+            var oldY = highlightActor.getY();
+            highlightActor.setPosition(temp.x, temp.y);
             highlightActor.draw(batch, parentAlpha * highlightAlpha);
+            highlightActor.setPosition(oldX, oldY);
         }
         super.draw(batch, parentAlpha);
     }

@@ -3,6 +3,7 @@ package com.ray3k.gdxparticleeditor.widgets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.*;
@@ -18,6 +19,10 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.github.tommyettinger.colorful.FloatColors;
 import com.github.tommyettinger.colorful.rgb.ColorTools;
+import com.ray3k.gdxparticleeditor.Core;
+import com.ray3k.gdxparticleeditor.ParticlePreview;
+import com.ray3k.gdxparticleeditor.widgets.panels.PreviewPanel;
+import com.ray3k.gdxparticleeditor.widgets.tables.ClassicTable;
 import com.ray3k.stripe.PopColorPicker;
 import com.ray3k.stripe.PopColorPicker.PopColorPickerListener;
 import com.ray3k.stripe.PopTable.TableShowHideListener;
@@ -26,10 +31,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.ray3k.gdxparticleeditor.Core.foregroundStage;
-import static com.ray3k.gdxparticleeditor.Core.stage;
+import static com.ray3k.gdxparticleeditor.Core.*;
+import static com.ray3k.gdxparticleeditor.Core.previewViewport;
 import static com.ray3k.gdxparticleeditor.Listeners.*;
 import static com.ray3k.gdxparticleeditor.widgets.ColorGraph.ColorGraphEventType.*;
+import static com.ray3k.gdxparticleeditor.widgets.panels.PreviewPanel.*;
 import static com.ray3k.gdxparticleeditor.widgets.styles.Styles.popColorPickerStyle;
 
 /**
@@ -251,13 +257,43 @@ public class ColorGraph extends Table {
                             if (cp != null) return;
                             allowDrag = false;
                             Gdx.input.setInputProcessor(foregroundStage);
-                            cp = new PopColorPicker(nodeData.color, popColorPickerStyle);
+                            cp = new PopColorPicker(nodeData.color, popColorPickerStyle) {
+                                @Override
+                                public void draw(Batch batch, float parentAlpha) {
+                                    temp.setZero();
+                                    previewPanel.localToStageCoordinates(temp);
+                                    var oldX = previewPanel.getX();
+                                    var oldY = previewPanel.getY();
+                                    previewPanel.setPosition(temp.x, temp.y);
+                                    previewPanel.draw(batch, parentAlpha);
+                                    previewPanel.setPosition(oldX, oldY);
+
+                                    ParticlePreview.pause = false;
+                                    spriteBatch.flush();
+                                    previewViewport.apply();
+                                    spriteBatch.setProjectionMatrix(previewViewport.getCamera().combined);
+                                    Core.particlePreview.render();
+                                    spriteBatch.flush();
+                                    ParticlePreview.pause = true;
+                                    viewport.apply();
+                                    spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+
+                                    super.draw(batch, parentAlpha);
+                                }
+
+                                @Override
+                                protected void setStage(Stage stage) {
+                                    super.setStage(stage);
+                                    if (stage == null) ParticlePreview.pause = false;
+                                }
+                            };
                             cp.setShowAlpha(false);
                             cp.setHideOnUnfocus(true);
                             cp.setButtonListener(handListener);
                             cp.setTextFieldListener(ibeamListener);
                             cp.setDraggable(true);
                             cp.setKeepCenteredInWindow(false);
+//                            cp.setHighlightActor(PreviewPanel.previewPanel);
                             cp.addListener(new PopColorPickerListener() {
                                 @Override
                                 public void picked(Color color) {

@@ -38,8 +38,10 @@ public class PreviewPanel extends Panel {
     public static Image previewBackgroundImage;
     public static ResizeWidget resizeWidget;
     public static Label statsLabel;
+    public static PreviewPanel previewPanel;
 
     public PreviewPanel() {
+        previewPanel = this;
         zoomLevelIndex = 5;
         setTouchable(Touchable.enabled);
 

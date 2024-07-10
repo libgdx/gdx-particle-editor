@@ -3,6 +3,7 @@
 * Adding images now inserts the new images after the currently selected image
 * Added user configurable FPS setting
 * Added ability to reload the emitter images. Press F5 or click the button in the images panel.
+* The preview is no longer dimmed when the color picker for the color graphs are drawn
 * Minor UI tweaks and bug fixes
 ### Version 1.0.6
 * Resolved issue with Angle still affecting the emitter despite being deactivated. Thanks ludek17052.

@@ -15,8 +15,11 @@ public class ParticlePreview {
     public static boolean pause;
 
     public void render() {
-        spriteBatch.setProjectionMatrix(previewViewport.getCamera().combined);
-        spriteBatch.begin();
+        var isDrawing = spriteBatch.isDrawing();
+        if (!isDrawing) {
+            spriteBatch.setProjectionMatrix(previewViewport.getCamera().combined);
+            spriteBatch.begin();
+        }
         spriteBatch.setColor(Color.WHITE);
 
         //draw preview
@@ -68,6 +71,6 @@ public class ParticlePreview {
             particleEffect.draw(spriteBatch);
         }
 
-        spriteBatch.end();
+        if (!isDrawing) spriteBatch.end();
     }
 }
