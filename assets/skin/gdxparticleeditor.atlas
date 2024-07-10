@@ -104,14 +104,14 @@ button-close-down
   index: -1
 button-close-over
   rotate: false
-  xy: 1615, 1520
+  xy: 1632, 1520
   size: 13, 14
   orig: 13, 14
   offset: 0, 0
   index: -1
 button-close-up
   rotate: false
-  xy: 1631, 1536
+  xy: 1648, 1536
   size: 13, 14
   orig: 13, 14
   offset: 0, 0
@@ -160,21 +160,21 @@ button-highlighted-up
   index: -1
 button-minus-down
   rotate: false
-  xy: 1406, 913
+  xy: 1460, 913
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
   index: -1
 button-minus-over
   rotate: false
-  xy: 1423, 913
+  xy: 1477, 913
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
   index: -1
 button-minus-up
   rotate: false
-  xy: 1440, 913
+  xy: 1494, 913
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
@@ -307,21 +307,21 @@ button-normal-up
   index: -1
 button-plus-down
   rotate: false
-  xy: 1457, 913
+  xy: 788, 65
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
   index: -1
 button-plus-over
   rotate: false
-  xy: 1474, 913
+  xy: 805, 67
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
   index: -1
 button-plus-up
   rotate: false
-  xy: 1491, 913
+  xy: 822, 67
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
@@ -489,42 +489,42 @@ colorbar-bg
   index: -1
 colorbar-knob-bg
   rotate: false
-  xy: 1839, 1891
+  xy: 994, 155
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-knob-fill
   rotate: false
-  xy: 1520, 917
+  xy: 1606, 1439
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-left-bg
   rotate: false
-  xy: 1003, 197
+  xy: 1580, 1384
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-left-fill
   rotate: false
-  xy: 1580, 1384
+  xy: 1580, 1341
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-right-bg
   rotate: false
-  xy: 1580, 1341
+  xy: 1853, 1907
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
   index: -1
 colorbar-right-fill
   rotate: false
-  xy: 1606, 1442
+  xy: 1580, 1298
   size: 9, 41
   orig: 9, 41
   offset: 0, 0
@@ -552,7 +552,7 @@ cp-background
   index: -1
 cp-checker
   rotate: false
-  xy: 1615, 1536
+  xy: 1616, 1504
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
@@ -573,14 +573,14 @@ cp-color-knob-circle-background
   index: -1
 cp-color-swatch
   rotate: false
-  xy: 805, 68
+  xy: 1599, 1532
   size: 15, 15
   orig: 15, 15
   offset: 0, 0
   index: -1
 cp-color-swatch-new
   rotate: false
-  xy: 788, 66
+  xy: 839, 68
   size: 15, 15
   orig: 15, 15
   offset: 0, 0
@@ -636,7 +636,7 @@ cp-slider-background
   index: -1
 cp-slider-knob-horizontal
   rotate: false
-  xy: 1508, 913
+  xy: 1003, 222
   size: 10, 16
   orig: 10, 16
   offset: 0, 0
@@ -713,7 +713,7 @@ draggable-list-drag-background
   index: -1
 draggable-list-drag-remove
   rotate: false
-  xy: 1857, 1966
+  xy: 1646, 1509
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
@@ -935,6 +935,27 @@ icon-settings-down
   orig: 16, 16
   offset: 0, 0
   index: -1
+icon-settings-high-contrast-down
+  rotate: false
+  xy: 1442, 913
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+icon-settings-high-contrast-over
+  rotate: false
+  xy: 1406, 913
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+icon-settings-high-contrast-up
+  rotate: false
+  xy: 1424, 913
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 icon-settings-over
   rotate: false
   xy: 1016, 714
@@ -1049,56 +1070,56 @@ list-background
   index: -1
 list-over
   rotate: false
-  xy: 839, 68
+  xy: 1599, 1498
   size: 15, 15
   orig: 15, 15
   offset: 0, 0
   index: -1
 list-selection
   rotate: false
-  xy: 822, 68
+  xy: 1599, 1515
   size: 15, 15
   orig: 15, 15
   offset: 0, 0
   index: -1
 pager-dot
   rotate: false
-  xy: 1615, 1493
+  xy: 1839, 1902
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: -1
 pager-dot-over
   rotate: false
-  xy: 1646, 1536
+  xy: 1843, 1950
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: -1
 pager-dot-pressed
   rotate: false
-  xy: 1843, 1950
+  xy: 1839, 1934
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: -1
 pager-dot-selected
   rotate: false
-  xy: 1839, 1934
+  xy: 1839, 1918
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: -1
 pager-dot-selected-over
   rotate: false
-  xy: 1630, 1520
+  xy: 1647, 1520
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: -1
 pager-dot-selected-pressed
   rotate: false
-  xy: 1629, 1504
+  xy: 1839, 1886
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
@@ -1133,35 +1154,35 @@ pop-table
   index: -1
 radio-checked
   rotate: false
-  xy: 1599, 1533
+  xy: 1599, 1482
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
   index: -1
 radio-checked-down
   rotate: false
-  xy: 1599, 1517
+  xy: 1616, 1536
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
   index: -1
 radio-checked-over
   rotate: false
-  xy: 1599, 1517
+  xy: 1616, 1536
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
   index: -1
 radio-down
   rotate: false
-  xy: 1599, 1517
+  xy: 1616, 1536
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
   index: -1
 radio-over
   rotate: false
-  xy: 1599, 1501
+  xy: 1616, 1520
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
@@ -1210,7 +1231,7 @@ radio-spaced-up
   index: -1
 radio-up
   rotate: false
-  xy: 1599, 1485
+  xy: 1632, 1536
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
@@ -1224,14 +1245,14 @@ resize-background
   index: -1
 resize-knob-over
   rotate: false
-  xy: 1615, 1485
+  xy: 1108, 919
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 resize-knob-up
   rotate: false
-  xy: 1108, 919
+  xy: 1520, 952
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -1329,7 +1350,7 @@ spinner-top-button-over
   index: -1
 spinner-top-button-up
   rotate: false
-  xy: 1615, 1509
+  xy: 1632, 1509
   size: 12, 9
   orig: 12, 9
   offset: 0, 0
@@ -1350,7 +1371,7 @@ split-v
   index: -1
 subpanel-body-divider
   rotate: false
-  xy: 509, 910
+  xy: 1577, 1279
   size: 1, 24
   orig: 1, 24
   offset: 0, 0
@@ -1371,7 +1392,7 @@ subpanel-body-right
   index: -1
 subpanel-bottom-divider
   rotate: false
-  xy: 1082, 893
+  xy: 512, 927
   size: 1, 7
   orig: 1, 7
   offset: 0, 0
@@ -1392,7 +1413,7 @@ subpanel-bottom-right
   index: -1
 subpanel-header-divider
   rotate: false
-  xy: 512, 910
+  xy: 509, 910
   size: 1, 24
   orig: 1, 24
   offset: 0, 0
@@ -1420,7 +1441,7 @@ subpanel2-body
   index: -1
 subpanel2-divider
   rotate: false
-  xy: 1820, 1841
+  xy: 512, 905
   size: 1, 20
   orig: 1, 20
   offset: 0, 0

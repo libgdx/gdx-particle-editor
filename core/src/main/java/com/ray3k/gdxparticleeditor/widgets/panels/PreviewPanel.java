@@ -65,7 +65,7 @@ public class PreviewPanel extends Panel {
         stack.add(table);
 
         table.top().pad(5);
-        var settingsButton = new Button(skin, "settings");
+        var settingsButton = new Button(skin, "settings-high-contrast");
         table.add(settingsButton).expandX().left();
         addHandListener(settingsButton);
         var popTooltip = addTooltip(settingsButton, "Change the preview settings", Align.top, Align.topRight, tooltipBottomLeftArrowStyle);
