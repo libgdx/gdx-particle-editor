@@ -3,6 +3,8 @@ package com.ray3k.gdxparticleeditor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.PreviewSettings.*;
@@ -22,9 +24,6 @@ public class ParticlePreview {
         }
         spriteBatch.setColor(Color.WHITE);
 
-        //draw preview
-        if (previewImageTexture != null) spriteBatch.draw(previewImageTexture, previewImageX, previewImageY, previewImageWidth, previewImageHeight);
-
         //calculate world coordinates
         temp.set(previewViewport.getScreenX(), Gdx.graphics.getHeight() - previewViewport.getScreenY());
         previewViewport.unproject(temp);
@@ -35,6 +34,13 @@ public class ParticlePreview {
         previewViewport.unproject(temp);
         float right = temp.x;
         float top = temp.y;
+
+        //draw background color
+        shapeDrawer.setColor(getBackgroundColor());
+        shapeDrawer.filledRectangle(left, bottom, right - left, top - bottom);
+
+        //draw preview
+        if (previewImageTexture != null) spriteBatch.draw(previewImageTexture, previewImageX, previewImageY, previewImageWidth, previewImageHeight);
 
         if (isGridEnabled()) {
             //draw major grid

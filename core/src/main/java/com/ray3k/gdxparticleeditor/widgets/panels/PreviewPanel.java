@@ -39,6 +39,7 @@ public class PreviewPanel extends Panel {
     public static ResizeWidget resizeWidget;
     public static Label statsLabel;
     public static PreviewPanel previewPanel;
+    public static Stack previewStack;
 
     public PreviewPanel() {
         previewPanel = this;
@@ -48,21 +49,17 @@ public class PreviewPanel extends Panel {
         var label = new Label("Preview", skin, "header");
         tabTable.add(label);
 
-        var stack = new Stack();
-        bodyTable.add(stack).grow();
-
-        //Background
-        previewBackgroundImage = new Image(skin, "white");
-        stack.add(previewBackgroundImage);
-        previewBackgroundImage.setColor(getBackgroundColor());
+        previewStack = new Stack();
+        previewStack.setColor(1, 1, 1, 0);
+        bodyTable.add(previewStack).grow();
 
         //Preview viewport
-        stack.add(viewportWidget);
+        previewStack.add(viewportWidget);
 
         //UI
         var table = new Table();
         table.setTouchable(Touchable.enabled);
-        stack.add(table);
+        previewStack.add(table);
 
         table.top().pad(5);
         var settingsButton = new Button(skin, "settings-high-contrast");
@@ -111,7 +108,7 @@ public class PreviewPanel extends Panel {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (button == Buttons.RIGHT) {
                     temp.set(x, y);
-                    stack.localToScreenCoordinates(temp);
+                    previewStack.localToScreenCoordinates(temp);
                     previewViewport.unproject(temp);
                     particleEffect.setPosition(temp.x, temp.y);
                     for (var emitter : particleEffect.getEmitters()) {
@@ -182,7 +179,7 @@ public class PreviewPanel extends Panel {
 
                 if (Gdx.input.isButtonPressed(Buttons.RIGHT)) {
                     temp.set(x, y);
-                    stack.localToScreenCoordinates(temp);
+                    previewStack.localToScreenCoordinates(temp);
                     previewViewport.unproject(temp);
                     particleEffect.setPosition(temp.x, temp.y);
                 }
@@ -227,7 +224,7 @@ public class PreviewPanel extends Panel {
         addVerticalResizeListener(resizeWidget.getTopHandle());
         addNESWresizeListener(resizeWidget.getTopRightHandle());
         addAllResizeListener(resizeWidget.getActor());
-        stack.add(resizeWidget);
+        previewStack.add(resizeWidget);
 
         //stats
         statsLabel = new Label("", skin) {
@@ -259,7 +256,7 @@ public class PreviewPanel extends Panel {
         container = new Container<>(statsLabel);
         container.bottom().left();
         container.pad(10);
-        stack.add(container);
+        previewStack.add(container);
         statsLabel.addAction(Actions.delay(1f, Actions.run(() -> statsLabel.setLayoutEnabled(true))));
         statsLabel.setVisible(isStatisticsEnabled());
         statsLabel.setColor(getStatisticsColor());

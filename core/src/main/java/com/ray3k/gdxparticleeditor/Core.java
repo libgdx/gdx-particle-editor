@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -41,6 +42,7 @@ import static com.ray3k.gdxparticleeditor.PresetActions.welcomeAction;
 import static com.ray3k.gdxparticleeditor.PreviewSettings.*;
 import static com.ray3k.gdxparticleeditor.Settings.*;
 import static com.ray3k.gdxparticleeditor.Utils.*;
+import static com.ray3k.gdxparticleeditor.widgets.panels.PreviewPanel.*;
 import static com.ray3k.gdxparticleeditor.widgets.panels.PreviewPanel.zoomLevelIndex;
 import static com.ray3k.gdxparticleeditor.widgets.panels.PreviewPanel.zoomLevels;
 
@@ -282,6 +284,8 @@ public class Core extends ApplicationAdapter {
      */
     public static Array<PopTable> tooltips;
 
+    private final static Vector2 temp = new Vector2();
+
     @Override
     public void create() {
         sizeWindowToScreenHeight(950/1080f, 1000/950f);
@@ -469,8 +473,25 @@ public class Core extends ApplicationAdapter {
         particlePreview.render();
         spriteBatch.setShader(null);
 
-        foregroundStage.act();
+        //Draw the previewButtonsTable under the foreground but above the particle preview
         viewport.apply();
+        if (previewStack != null) {
+            spriteBatch.begin();
+            spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+
+            float oldX = previewStack.getX();
+            float oldY = previewStack.getY();
+            temp.set(oldX, oldY);
+            previewStack.getParent().localToStageCoordinates(temp);
+            previewStack.setPosition(temp.x, temp.y);
+            previewStack.setColor(Color.WHITE);
+            previewStack.draw(spriteBatch, 1f);
+            previewStack.setPosition(oldX, oldY);
+            previewStack.setColor(1, 1, 1, 0);
+            spriteBatch.end();
+        }
+
+        foregroundStage.act();
         foregroundStage.draw();
 
         windowResized = false;
