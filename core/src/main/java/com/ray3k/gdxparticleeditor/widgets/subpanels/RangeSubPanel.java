@@ -33,7 +33,7 @@ public class RangeSubPanel extends Panel {
 
         tabTable.padRight(7);
         tabTable.left();
-        var label = new Label(title, skin, "header");
+        var label = new Label(title, skin, "header-underline");
         tabTable.add(label).space(3);
 
         if (closeProperty != null) {

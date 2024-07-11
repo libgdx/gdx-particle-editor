@@ -29,7 +29,7 @@ public class CountSubPanel extends Panel {
         final var spinnerWidth = 50;
 
         tabTable.left();
-        var label = new Label("Count", skin, "header");
+        var label = new Label("Count", skin, "header-underline");
         tabTable.add(label);
 
         bodyTable.defaults().space(itemSpacing);

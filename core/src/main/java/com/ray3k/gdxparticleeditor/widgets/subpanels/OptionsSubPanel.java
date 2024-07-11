@@ -26,7 +26,7 @@ public class OptionsSubPanel extends Panel {
         final var tooltipWidth = 250;
 
         tabTable.left();
-        var label = new Label("Options", skin, "header");
+        var label = new Label("Options", skin, "header-underline");
         tabTable.add(label);
 
         bodyTable.defaults().space(itemSpacing).left();

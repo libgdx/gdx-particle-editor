@@ -31,7 +31,7 @@ public class TintSubPanel extends Panel {
         tabTable.padRight(7);
 
         tabTable.left();
-        var label = new Label("Tint", skin, "header");
+        var label = new Label("Tint", skin, "header-underline");
         tabTable.add(label).spaceRight(3);
 
         var colorGraph = new ColorGraph(colorGraphStyle);

@@ -51,7 +51,7 @@ public class ImagesSubPanel extends Panel {
         setTouchable(Touchable.enabled);
 
         tabTable.left();
-        var label = new Label("Images", skin, "header");
+        var label = new Label("Images", skin, "header-underline");
         tabTable.add(label);
 
         bodyTable.defaults().space(15);

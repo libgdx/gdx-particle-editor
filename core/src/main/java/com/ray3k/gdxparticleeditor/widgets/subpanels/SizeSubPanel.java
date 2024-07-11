@@ -52,7 +52,7 @@ public class SizeSubPanel extends Panel {
 
         tabTable.padRight(7);
         tabTable.left();
-        var label = new Label("Size", skin, "header");
+        var label = new Label("Size", skin, "header-underline");
         tabTable.add(label);
 
         var graphToggleWidget = new ToggleGroup();

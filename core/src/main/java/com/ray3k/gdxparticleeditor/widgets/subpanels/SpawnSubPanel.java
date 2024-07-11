@@ -88,7 +88,7 @@ public class SpawnSubPanel extends Panel {
 
         tabTable.padRight(7);
         tabTable.left();
-        var label = new Label("Spawn", skin, "header");
+        var label = new Label("Spawn", skin, "header-underline");
         tabTable.add(label).space(3);
 
         var graphToggleWidget = new ToggleGroup();

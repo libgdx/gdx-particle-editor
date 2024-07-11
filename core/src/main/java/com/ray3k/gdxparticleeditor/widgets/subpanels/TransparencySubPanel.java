@@ -33,7 +33,7 @@ public class TransparencySubPanel extends Panel {
 
         tabTable.padRight(7);
         tabTable.left();
-        var label = new Label("Transparency", skin, "header");
+        var label = new Label("Transparency", skin, "header-underline");
         tabTable.add(label);
 
         var graphToggleWidget = new ToggleGroup();

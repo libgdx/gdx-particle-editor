@@ -2204,8 +2204,7 @@
 		"font": "font"
 	},
 	"header": {
-		"font": "header",
-		"background": "header-background-10"
+		"font": "header"
 	},
 	"bold": {
 		"font": "bold"
@@ -2244,6 +2243,10 @@
 	},
 	"high-contrast": {
 		"font": "font-high-contrast"
+	},
+	"header-underline": {
+		"font": "header",
+		"background": "header-background-10"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
