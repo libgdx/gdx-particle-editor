@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.8
+* 
 ### Version 1.0.7
 * Adding images now inserts the new images after the currently selected image
 * Added user configurable FPS setting
