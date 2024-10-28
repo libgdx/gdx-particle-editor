@@ -157,21 +157,21 @@ public class PopPreviewSettings extends PopTable {
                 public void picked(Color color) {
                     backgroundColorImage.setColor(color);
                     setBackgroundColor(color);
-                    previewBackgroundImage.setColor(color);
+                    if (previewBackgroundImage != null) previewBackgroundImage.setColor(color);
                 }
 
                 @Override
                 public void updated(Color color) {
                     backgroundColorImage.setColor(color);
                     setBackgroundColorTemporarily(color);
-                    previewBackgroundImage.setColor(color);
+                    if (previewBackgroundImage != null) previewBackgroundImage.setColor(color);
                 }
 
                 @Override
                 public void cancelled(Color oldColor) {
                     backgroundColorImage.setColor(oldColor);
                     setBackgroundColorTemporarily(oldColor);
-                    previewBackgroundImage.setColor(oldColor);
+                    if (previewBackgroundImage != null)  previewBackgroundImage.setColor(oldColor);
                 }
             });
             cp.show(foregroundStage);
