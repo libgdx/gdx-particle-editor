@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.9
+*
 ### Version 1.0.8
 * Fixed crash when changing the preview background color
 * Fixed crash on Mac when opening file picker dialogs
