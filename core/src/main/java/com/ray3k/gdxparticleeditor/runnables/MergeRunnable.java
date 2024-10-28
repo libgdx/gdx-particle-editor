@@ -3,6 +3,7 @@ package com.ray3k.gdxparticleeditor.runnables;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.ray3k.gdxparticleeditor.FileDialogs;
@@ -29,29 +30,34 @@ public class MergeRunnable implements Runnable {
         if (open)
             return;
 
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(() -> {
-            open = true;
-            stage.getRoot().setTouchable(Touchable.disabled);
+        if (UIUtils.isMac) openWindow();
+        else {
+            ExecutorService service = Executors.newSingleThreadExecutor();
+            service.execute(this::openWindow);
+            service.shutdown();
+        }
+    }
 
-            if (effectEmittersPanel == null || emitterPropertiesPanel == null) return;
+    private void openWindow() {
+        open = true;
+        stage.getRoot().setTouchable(Touchable.disabled);
 
-            var useFileExtension = preferences.getBoolean(NAME_PRESUME_FILE_EXTENSION, DEFAULT_PRESUME_FILE_EXTENSION);
-            var filterPatterns = useFileExtension ? new String[] {"p"} : null;
-            var fileHandle = FileDialogs.openDialog("Merge", getDefaultSavePath(), filterPatterns, "Particle files (*.p)");
+        if (effectEmittersPanel == null || emitterPropertiesPanel == null) return;
 
-            if (fileHandle != null) {
-                defaultFileName = fileHandle.name();
-                Settings.setDefaultSavePath(fileHandle.parent());
-                Gdx.app.postRunnable(() -> {
-                    loadOnMainThread(fileHandle);
-                });
-            }
+        var useFileExtension = preferences.getBoolean(NAME_PRESUME_FILE_EXTENSION, DEFAULT_PRESUME_FILE_EXTENSION);
+        var filterPatterns = useFileExtension ? new String[] {"p"} : null;
+        var fileHandle = FileDialogs.openDialog("Merge", getDefaultSavePath(), filterPatterns, "Particle files (*.p)");
 
-            stage.getRoot().setTouchable(Touchable.enabled);
-            open = false;
-        });
-        service.shutdown();
+        if (fileHandle != null) {
+            defaultFileName = fileHandle.name();
+            Settings.setDefaultSavePath(fileHandle.parent());
+            Gdx.app.postRunnable(() -> {
+                loadOnMainThread(fileHandle);
+            });
+        }
+
+        stage.getRoot().setTouchable(Touchable.enabled);
+        open = false;
     }
 
     private void loadOnMainThread (FileHandle fileHandle) {

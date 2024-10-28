@@ -3,6 +3,7 @@ package com.ray3k.gdxparticleeditor.runnables;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
 import com.badlogic.gdx.utils.Array;
 import com.ray3k.gdxparticleeditor.FileDialogs;
 import com.ray3k.gdxparticleeditor.undo.UndoManager;
@@ -30,31 +31,36 @@ public class ImagesRunnable implements Runnable {
         if (open)
             return;
 
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(() -> {
-            open = true;
-            stage.getRoot().setTouchable(Touchable.disabled);
+        if (UIUtils.isMac) openWindow();
+        else {
+            ExecutorService service = Executors.newSingleThreadExecutor();
+            service.execute(this::openWindow);
+            service.shutdown();
+        }
+    }
 
-            if (effectEmittersPanel == null || emitterPropertiesPanel == null) return;
+    private void openWindow() {
+        open = true;
+        stage.getRoot().setTouchable(Touchable.disabled);
 
-            var selectedFileHandles = FileDialogs.openMultipleDialog("Add images", getDefaultImagePath(), new String[] {"png","jpg","jpeg"}, "Image files (*.png;*.jpg;*.jpeg)");
-            if (selectedFileHandles == null) {
-                stage.getRoot().setTouchable(Touchable.enabled);
-                open = false;
-                return;
-            }
+        if (effectEmittersPanel == null || emitterPropertiesPanel == null) return;
 
-            if (selectedFileHandles.size > 0) {
-                setDefaultImagePath(selectedFileHandles.first().parent());
-                Gdx.app.postRunnable(() -> {
-                    loadOnMainThread(selectedFileHandles);
-                });
-            }
-
+        var selectedFileHandles = FileDialogs.openMultipleDialog("Add images", getDefaultImagePath(), new String[] {"png","jpg","jpeg"}, "Image files (*.png;*.jpg;*.jpeg)");
+        if (selectedFileHandles == null) {
             stage.getRoot().setTouchable(Touchable.enabled);
             open = false;
-        });
-        service.shutdown();
+            return;
+        }
+
+        if (selectedFileHandles.size > 0) {
+            setDefaultImagePath(selectedFileHandles.first().parent());
+            Gdx.app.postRunnable(() -> {
+                loadOnMainThread(selectedFileHandles);
+            });
+        }
+
+        stage.getRoot().setTouchable(Touchable.enabled);
+        open = false;
     }
 
     private void loadOnMainThread (Array<FileHandle> selectedFileHandles) {
