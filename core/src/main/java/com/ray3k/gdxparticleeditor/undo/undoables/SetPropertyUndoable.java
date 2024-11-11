@@ -1,11 +1,11 @@
 package com.ray3k.gdxparticleeditor.undo.undoables;
 
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter.ScaledNumericValue;
 import com.ray3k.gdxparticleeditor.undo.Undoable;
 import lombok.AllArgsConstructor;
 
-import static com.ray3k.gdxparticleeditor.Core.particleEffect;
-import static com.ray3k.gdxparticleeditor.Core.selectedEmitter;
+import static com.ray3k.gdxparticleeditor.Core.*;
 import static com.ray3k.gdxparticleeditor.widgets.panels.EffectEmittersPanel.effectEmittersPanel;
 import static com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel.ShownProperty;
 import static com.ray3k.gdxparticleeditor.widgets.panels.EmitterPropertiesPanel.emitterPropertiesPanel;
@@ -66,8 +66,14 @@ public class SetPropertyUndoable implements Undoable {
             case ANGLE:
                 selectedEmitter.getAngle().setActive(active);
                 if (!active) {
+                    var value = new ScaledNumericValue();
+                    value.set(selectedEmitter.getAngle());
+                    defaultAngleMap.put(selectedEmitter, value);
+                    
                     selectedEmitter.getAngle().setHigh(0);
                     selectedEmitter.getAngle().setLow(0);
+                } else {
+                    selectedEmitter.getAngle().set(defaultAngleMap.get(selectedEmitter));
                 }
                 break;
             case ROTATION:

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter.ScaledNumericValue;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -140,6 +141,12 @@ public class Core extends ApplicationAdapter {
      * The currently selected emitter. The user can edit the properties of this emitter in the EmitterPropertiesPanel.
      */
     public static ParticleEmitter selectedEmitter;
+
+    /**
+     * A map that associates an emitter with a defaultAngle. When an emitter is deactivated, the angle is stored
+     * temporarily in the app in case the user activates it later. This is only necessary with angle values.
+     */
+    public static ObjectMap<ParticleEmitter, ScaledNumericValue> defaultAngleMap = new ObjectMap<>();
 
     /**
      * The currently loaded vert shader for the ParticleEffect preview.
