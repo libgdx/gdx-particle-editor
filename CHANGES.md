@@ -1,4 +1,6 @@
 # Changelog
+### Version 1.0.10
+* 
 ### Version 1.0.9
 * The default angle no longer resets after deactivating and reactivating the angle property. 
 ### Version 1.0.8
